@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WZDE"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="WZDE" Height="225" Width="400">
+    <TabPanel>
+        <Button Padding="10" Click="OtworzZPliku">Otwórz</Button>
+        <Button Padding="10" Click="ZapiszDoPliku">Zapisz</Button>
+    </TabPanel>
 </Window>
