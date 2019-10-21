@@ -23,11 +23,16 @@ namespace WZDE
     public partial class MainWindow : Window
     {
         public BazaDanych[] bazaDanych;
+        public BazaDanych[] bazaDanychPos;
 
-        string szablon = System.IO.File.ReadAllText(@"C:\Users\User\source\repos\WZDE\WZDE\SZABLON.txt");
-        string wierszUzytku = System.IO.File.ReadAllText(@"C:\Users\User\source\repos\WZDE\WZDE\wierszUzytek.txt");
-        string wierszDzialki = System.IO.File.ReadAllText(@"C:\Users\User\source\repos\WZDE\WZDE\wierszDzialka.txt");
-        string wierszDziUzy = System.IO.File.ReadAllText(@"C:\Users\User\source\repos\WZDE\WZDE\wierszDziUzy.txt");
+        //string szablon = System.IO.File.ReadAllText(@"C:\Users\User\source\repos\WZDE\WZDE\SZABLON.txt");
+        string szablon = System.IO.File.ReadAllText(@"SZABLON.txt");
+        //string wierszUzytku = System.IO.File.ReadAllText(@"C:\Users\User\source\repos\WZDE\WZDE\wierszUzytek.txt");
+        string wierszUzytku = System.IO.File.ReadAllText(@"wierszUzytek.txt");
+        //string wierszDzialki = System.IO.File.ReadAllText(@"C:\Users\User\source\repos\WZDE\WZDE\wierszDzialka.txt");
+        string wierszDzialki = System.IO.File.ReadAllText(@"wierszDzialka.txt");
+        //string wierszDziUzy = System.IO.File.ReadAllText(@"C:\Users\User\source\repos\WZDE\WZDE\wierszDziUzy.txt");
+        string wierszDziUzy = System.IO.File.ReadAllText(@"wierszDziUzy.txt");
 
 
         public MainWindow()
@@ -72,19 +77,19 @@ namespace WZDE
             Console.WriteLine("x");
 
 
-            string[] separators = { "\n" };
-            int iloscLinii = calyOdczzytanyText.Split(separators, StringSplitOptions.RemoveEmptyEntries).Count();
-            bazaDanych = new BazaDanych[iloscLinii];
-            for (int i = 0; i < iloscLinii; i++)
-            {
-                bazaDanych[i] = new BazaDanych();
-            }
+            //string[] separators = { "\n" };
+            //int iloscLinii = calyOdczzytanyText.Split(separators, StringSplitOptions.RemoveEmptyEntries).Count();
+            //bazaDanych = new BazaDanych[iloscLinii];
+            //for (int i = 0; i < iloscLinii; i++)
+            //{
+            //    bazaDanych[i] = new BazaDanych();
+            //}
 
             Plik.rozdzielenieTextu(calyOdczzytanyText, ref bazaDanych);
 
             for (int i = 0; i < bazaDanych.Count(); i++)
             {
-                bazaDanych[i].wypiszWszystko();
+                Console.WriteLine("kw m " + bazaDanych[i].KW);
             }
         }
 
@@ -108,33 +113,53 @@ namespace WZDE
                 string dokHTML = szablon;
                 int licznikNowejBazy = 0;
 
+
+                Console.WriteLine(bazaDanych.Count() + "count");
                 for (int i = 0; i < bazaDanych.Count(); i++)
                 {
-                  
-                    bazaTmp[licznikNowejBazy] = bazaDanych[i];
-                 
-                    if (!(i < bazaDanych.Count() - 1)) break;
 
-                    if (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn))
+
+                    bazaTmp[licznikNowejBazy] = bazaDanych[i];
+
+
+                    if ((i < bazaDanych.Count() - 1) && (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn)))
                     {
-                        ++licznikNowejBazy;
-                        // bazaTmp[++licznikNowejBazy] = bazaDanych[i];
-                        Console.WriteLine(licznikNowejBazy);
+
+
+                        Console.WriteLine("       if (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn))");
+                        bazaTmp[++licznikNowejBazy] = bazaDanych[i];
+
+                        //bazaTmp[++licznikNowejBazy] = bazaDanych[i];
+                        Console.WriteLine("liczniek IF " + licznikNowejBazy);
+                        //  ++licznikNowejBazy;
+
+
+                        //if (i == bazaDanych.Count() - 1)
+                        //{
+                        //     bazaTmp[licznikNowejBazy] = bazaDanych[i];
+
+                        //}
+
                     }
                     else
                     {
+
+                        Console.WriteLine("else");
+
                         using (Stream s = File.Open(svd.FileName + i + ".html", FileMode.Create))
                         using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
 
                             try
                             {
-                               
+
                                 try
                                 {
-                                    
-                          
-                                    sw.WriteLine(Plik.generowanieRejestru(dokHTML, bazaTmp, licznikNowejBazy, wierszUzytku, wierszDzialki, wierszDziUzy));
+
+
+                                    sw.WriteLine(Plik.generowanieRejestru(dokHTML, bazaTmp, licznikNowejBazy, wierszDziUzy));
                                     licznikNowejBazy = 0;
+
+
                                 }
                                 catch (Exception exc)
                                 {
@@ -161,5 +186,48 @@ namespace WZDE
                 //}
             }
         }
+
+        private void OtworzStanPo(object sender, RoutedEventArgs e)
+        {
+            string calyOdczzytanyText = "";
+            poczatek:
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            // Set filter for file extension and default file extension 
+            dlg.DefaultExt = ".txt";
+
+            dlg.Filter = "All files(*.*) | *.*|TXT Files (*.txt)|*.txt| CSV(*.csv)|*.csv";
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+            // Get the selected file name 
+            if (result == true)
+            {
+                // Open document 
+                string filename = dlg.FileName;
+                // textBox1.Text = filename;
+                try
+                {
+
+                    calyOdczzytanyText = Plik.odczytZPliku(filename);
+                }
+                catch
+                {
+                    goto poczatek;
+                }
+            }
+
+            Plik.rozdzielenieTextu(calyOdczzytanyText, ref bazaDanychPos, true);
+
+
+            foreach (var item in bazaDanychPos)
+            {
+
+                Console.WriteLine(item.NrJedn + "  " + item.KW);
+            }
+        }
+
+
+
+
+
     }
 }

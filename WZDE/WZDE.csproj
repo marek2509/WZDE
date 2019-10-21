@@ -70,6 +70,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BazaDanychPo.cs" />
+    <Compile Include="WczytaneTekstowki.cs" />
     <Compile Include="ZnakiZastepcze.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

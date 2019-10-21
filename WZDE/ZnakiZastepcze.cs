@@ -15,6 +15,10 @@ namespace WZDE
         readonly public static string OZUS = "&lt;OZUs&gt;";
         readonly public static string powUzytkS = "&lt;pUZs&gt;";      
         readonly public static string klasaS = "&lt;OZKs&gt;";      
+        readonly public static string pJRs = "&lt;pJRs&gt;";      
+        readonly public static string KWs = "&lt;KWs&gt;";      
+        readonly public static string Podmiot = "&lt;sKTOIM2LN&gt;";      
+
  
     }
 }

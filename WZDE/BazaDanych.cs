@@ -16,6 +16,8 @@ namespace WZDE
         public string OZU { get; set; }
         public string Klasa { get; set; }    
         public string PowierzchniaUzytku { get; set; }
+        public string Podmion { get; set; }
+        public string KW { get; set; }
 
         public void wypiszWszystko()
         {

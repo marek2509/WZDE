@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="WZDE" Height="225" Width="400">
     <TabPanel>
-        <Button Padding="10" Click="OtworzZPliku">Otwórz</Button>
+        <Button Padding="10" Click="OtworzZPliku">Otwórz stan przed</Button>
+        <Button Padding="10" Click="OtworzStanPo" >Otwórz stan po</Button>
         <Button Padding="10" Click="ZapiszDoPliku">Zapisz</Button>
     </TabPanel>
 </Window>
