@@ -17,8 +17,18 @@ namespace WZDE
         readonly public static string klasaS = "&lt;OZKs&gt;";      
         readonly public static string pJRs = "&lt;pJRs&gt;";      
         readonly public static string KWs = "&lt;KWs&gt;";      
-        readonly public static string Podmiot = "&lt;sKTOIM2LN&gt;";      
-
- 
+        readonly public static string podmiotS = "&lt;sKTOIM2LN&gt;";   
+        readonly public static string slownieS = "&lt;sPJRs&gt;";   
+        
+        readonly public static string OFUN = "&lt;OFUn&gt;";
+        readonly public static string OZUN = "&lt;OZUn&gt;";
+        readonly public static string klasaN = "&lt;OZKn&gt;";
+        readonly public static string PowUzytkNowy = "&lt;pUZn&gt;";
+        readonly public static string nrDzNowy = "&lt;nDZ&gt;";
+        readonly public static string powDzialkiN = "&lt;pDZn&gt;";
+        readonly public static string KWn = "&lt;KWn&gt;";
+        readonly public static string podmiotN = "&lt;nKTOIM2LN&gt;";
+        readonly public static string pJRn = "&lt;pJRn&gt;";
+        readonly public static string slownieN = "&lt;sPJRn&gt;";
     }
 }

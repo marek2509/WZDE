@@ -87,10 +87,10 @@ namespace WZDE
 
             Plik.rozdzielenieTextu(calyOdczzytanyText, ref bazaDanych);
 
-            for (int i = 0; i < bazaDanych.Count(); i++)
-            {
-                Console.WriteLine("kw m " + bazaDanych[i].KW);
-            }
+            //for (int i = 0; i < bazaDanych.Count(); i++)
+            //{
+            //    Console.WriteLine("kw m " + bazaDanych[i].KW);
+            //}
         }
 
         private void ZapiszDoPliku(object sender, RoutedEventArgs e)
@@ -109,7 +109,7 @@ namespace WZDE
 
                 //        try
                 //        {
-                BazaDanych[] bazaTmp = new BazaDanych[100];
+                BazaDanych[] bazaTmp = new BazaDanych[1000];
                 string dokHTML = szablon;
                 int licznikNowejBazy = 0;
 
@@ -129,16 +129,7 @@ namespace WZDE
                         Console.WriteLine("       if (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn))");
                         bazaTmp[++licznikNowejBazy] = bazaDanych[i];
 
-                        //bazaTmp[++licznikNowejBazy] = bazaDanych[i];
-                        Console.WriteLine("liczniek IF " + licznikNowejBazy);
-                        //  ++licznikNowejBazy;
-
-
-                        //if (i == bazaDanych.Count() - 1)
-                        //{
-                        //     bazaTmp[licznikNowejBazy] = bazaDanych[i];
-
-                        //}
+                       // Console.WriteLine("liczniek IF " + licznikNowejBazy);
 
                     }
                     else
@@ -154,11 +145,8 @@ namespace WZDE
 
                                 try
                                 {
-
-
-                                    sw.WriteLine(Plik.generowanieRejestru(dokHTML, bazaTmp, licznikNowejBazy, wierszDziUzy));
+                                    sw.WriteLine(Plik.generowanieRejestru(dokHTML, bazaTmp, bazaDanychPos, licznikNowejBazy));
                                     licznikNowejBazy = 0;
-
 
                                 }
                                 catch (Exception exc)
@@ -218,11 +206,11 @@ namespace WZDE
             Plik.rozdzielenieTextu(calyOdczzytanyText, ref bazaDanychPos, true);
 
 
-            foreach (var item in bazaDanychPos)
-            {
+            //foreach (var item in bazaDanychPos)
+            //{
 
-                Console.WriteLine(item.NrJedn + "  " + item.KW);
-            }
+            //    Console.WriteLine(item.NrJedn + "  " + item.KW);
+            //}
         }
 
 

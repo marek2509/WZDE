@@ -18,5 +18,12 @@ namespace WZDE
       public static readonly string uzytekStaryBrak= System.IO.File.ReadAllText(@"wierszUzStbrak.txt");
       public static readonly string uzytekStaryDzialkaNowa = System.IO.File.ReadAllText(@"wierszUzStDZnow.txt");
       public static readonly string pustyPusty = System.IO.File.ReadAllText(@"pustyPusty.txt");
+
+      public static readonly string Ldzialka = System.IO.File.ReadAllText(@"Ldzialka.txt");
+      public static readonly string Lpusty = System.IO.File.ReadAllText(@"Lpusty.txt");
+      public static readonly string Luzytek = System.IO.File.ReadAllText(@"Luzytek.txt");
+      public static readonly string Pdzialka = System.IO.File.ReadAllText(@"Pdzialka.txt");
+      public static readonly string Ppusty = System.IO.File.ReadAllText(@"Ppusty.txt");
+      public static readonly string Puzytek = System.IO.File.ReadAllText(@"Puzytek.txt");
      }
 }
