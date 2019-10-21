@@ -203,7 +203,7 @@ namespace WZDE
 
         public static string oblPowJednoskiPoUzytku(BazaDanych[] baza, int licznik = -1)
         {
-            if (licznik == -1) licznik = baza.Count()-1;
+            if (licznik == -1) licznik = baza.Count() - 1;
             decimal powUzytku = 0;
             decimal powJednrej = 0;
 
@@ -215,6 +215,23 @@ namespace WZDE
             }
 
             return powJednrej.ToString();
+        }
+
+        public static string oblPowDoSlownejLiczby(BazaDanych[] baza, int licznik = -1)
+        {
+            if (licznik == -1) licznik = baza.Count() - 1;
+            decimal powUzytku = 0;
+            decimal powJednrej = 0;
+
+            for (int i = 0; i <= licznik; i++)
+            {
+
+                decimal.TryParse(baza[i].PowierzchniaUzytku.Replace(".", ","), out powUzytku);
+                powJednrej += powUzytku;
+            }
+
+            int powWMetrach = (int)(powJednrej * 10000);
+            return powWMetrach.ToString();
         }
 
         public static BazaDanych[] wyszukanieBazyPoScaleniu(BazaDanych[] bazaDanychPoScaleniu, string wyszukiwanaJednostka)
@@ -354,8 +371,8 @@ namespace WZDE
 
                 }
 
-         
-                for (int i = indexOstatniegoElem; i >= 0; i--) // utworzenie lewej części tabeli 
+
+            for (int i = indexOstatniegoElem; i >= 0; i--) // utworzenie lewej części tabeli 
             {
                 /*
                 wierszUzTMP = WczytaneTekstowki.wierszUzytekUzytek;
@@ -497,11 +514,11 @@ namespace WZDE
             for (int i = 0; i < wiekszy; i++)
             {
 
-             
+
 
                 //----------------------------
 
-                if (i< listaLewejTaabeli.Count)
+                if (i < listaLewejTaabeli.Count)
                 {
                     podmiankaTabela += listaLewejTaabeli[i];
                 }
@@ -527,12 +544,13 @@ namespace WZDE
             dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRs, oblPowJednoskiPoUzytku(baza, indexOstatniegoElem));
             dokHTML = dokHTML.Replace(ZnakiZastepcze.JednRejS, baza[0].NrJedn);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotS, baza[0].Podmiot);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(baza,indexOstatniegoElem)));
 
-
-            if(bazaPoscalWyszukana.Count()>0)
-            { 
-            dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, oblPowJednoskiPoUzytku(bazaPoscalWyszukana));
-            dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, bazaPoscalWyszukana[0].Podmiot);
+            if (bazaPoscalWyszukana.Count() > 0)
+            {
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, oblPowJednoskiPoUzytku(bazaPoscalWyszukana));
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, bazaPoscalWyszukana[0].Podmiot);
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
             }
 
             return dokHTML;
