@@ -29,9 +29,12 @@ namespace WZDE
             }
             return all;
         }
+/*
+        public void rozdzielenieLiniZCudzyslowami() // rozdziela linie np ' 1 ' ' 21 ' ' elo'
+        {
 
-
-
+        }
+        */
         public static void rozdzielenieTextu(string calyTextDoRozdzielenia, ref BazaDanych[] bazaDanych, bool opcjaZRowem = false) //odczyt z pliku z wyjatkami niepowodzenia należy podać ścieżkę, zwraca tablicę odczytaną z pliku
         {
             string[] lines = null;
@@ -80,7 +83,7 @@ namespace WZDE
             }
 
             Console.WriteLine("POCZATEK ");
-            int licznik = 0;
+            
             int licznikKlas = 0;
 
             foreach (string a in wartosciZTxt)
@@ -545,12 +548,17 @@ namespace WZDE
             dokHTML = dokHTML.Replace(ZnakiZastepcze.JednRejS, baza[0].NrJedn);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotS, baza[0].Podmiot);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(baza,indexOstatniegoElem)));
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.obrebEwidencyjny, Properties.Settings.Default.Obreb);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.gmina, Properties.Settings.Default.Gmina);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.IdZglPracGeodez, Properties.Settings.Default.IdZglPrac);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.KWn, baza[0].KW);
 
             if (bazaPoscalWyszukana.Count() > 0)
             {
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, oblPowJednoskiPoUzytku(bazaPoscalWyszukana));
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, bazaPoscalWyszukana[0].Podmiot);
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
+
             }
 
             return dokHTML;

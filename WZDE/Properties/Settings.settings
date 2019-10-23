@@ -1,7 +1,15 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WZDE.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Obreb" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Miodusy</Value>
+    </Setting>
+    <Setting Name="Gmina" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Perlejewo</Value>
+    </Setting>
+    <Setting Name="IdZglPrac" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GK.6642.</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

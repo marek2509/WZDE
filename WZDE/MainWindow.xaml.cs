@@ -25,19 +25,41 @@ namespace WZDE
         public BazaDanych[] bazaDanych;
         public BazaDanych[] bazaDanychPos;
 
-        //string szablon = System.IO.File.ReadAllText(@"C:\Users\User\source\repos\WZDE\WZDE\SZABLON.txt");
-        string szablon = System.IO.File.ReadAllText(@"SZABLON.txt");
-        //string wierszUzytku = System.IO.File.ReadAllText(@"C:\Users\User\source\repos\WZDE\WZDE\wierszUzytek.txt");
-        string wierszUzytku = System.IO.File.ReadAllText(@"wierszUzytek.txt");
-        //string wierszDzialki = System.IO.File.ReadAllText(@"C:\Users\User\source\repos\WZDE\WZDE\wierszDzialka.txt");
-        string wierszDzialki = System.IO.File.ReadAllText(@"wierszDzialka.txt");
-        //string wierszDziUzy = System.IO.File.ReadAllText(@"C:\Users\User\source\repos\WZDE\WZDE\wierszDziUzy.txt");
-        string wierszDziUzy = System.IO.File.ReadAllText(@"wierszDziUzy.txt");
+        public void wczytanieUstawienDomyślnych()
+        {
+            try
+            {
+                textBoxIdZglPrac.Text = Properties.Settings.Default.IdZglPrac;
+                textBoxObręb.Text = Properties.Settings.Default.Obreb;
+                textBoxGmina.Text = Properties.Settings.Default.Gmina;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("bł wczytanie ustawien domyslnych" + e);
+            }
+        }
+
+        public void zapisUstawienDomyslnych()
+        {
+            try
+            {
+                   Properties.Settings.Default.IdZglPrac = textBoxIdZglPrac.Text;
+                   Properties.Settings.Default.Gmina = textBoxGmina.Text;
+                   Properties.Settings.Default.Obreb = textBoxObręb.Text;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("bł zapisu ustawien domyslnych" + e);
+            }
+        }
 
 
         public MainWindow()
         {
             InitializeComponent();
+
+            wczytanieUstawienDomyślnych();
 
         }
 
@@ -96,48 +118,33 @@ namespace WZDE
         private void ZapiszDoPliku(object sender, RoutedEventArgs e)
         {
             SaveFileDialog svd = new SaveFileDialog();
-            svd.DefaultExt = ".html";
-            svd.Filter = "All files (*.*)|*.*|Text files (*.txt)|*.txt|HTML (*.html)|*.html";
+            svd.DefaultExt = ".doc";
+            svd.Filter = "All files (*.*)|*.*|Text files (*.txt)|*.txt|HTML (*.html)|*.html|doc (*.doc)|*.doc";
             if (svd.ShowDialog() == true)
             {
-                //using (Stream s = File.Open(svd.FileName, FileMode.Create))
 
-                //using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
-
-                //    try
-                //    {
-
-                //        try
-                //        {
                 BazaDanych[] bazaTmp = new BazaDanych[1000];
-                string dokHTML = szablon;
+                string dokHTML = WczytaneTekstowki.szablon;
                 int licznikNowejBazy = 0;
 
+               // Console.WriteLine(bazaDanych.Count() + "count");
 
-                Console.WriteLine(bazaDanych.Count() + "count");
                 for (int i = 0; i < bazaDanych.Count(); i++)
                 {
-
-
                     bazaTmp[licznikNowejBazy] = bazaDanych[i];
-
 
                     if ((i < bazaDanych.Count() - 1) && (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn)))
                     {
 
-
-                        Console.WriteLine("       if (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn))");
+                       // Console.WriteLine("       if (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn))");
                         bazaTmp[++licznikNowejBazy] = bazaDanych[i];
-
-                       // Console.WriteLine("liczniek IF " + licznikNowejBazy);
 
                     }
                     else
                     {
-
                         Console.WriteLine("else");
 
-                        using (Stream s = File.Open(svd.FileName + i + ".html", FileMode.Create))
+                        using (Stream s = File.Open(svd.FileName + i + ".doc", FileMode.Create))
                         using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
 
                             try
@@ -145,13 +152,15 @@ namespace WZDE
 
                                 try
                                 {
+                                   
+
                                     sw.WriteLine(Plik.generowanieRejestru(dokHTML, bazaTmp, bazaDanychPos, licznikNowejBazy));
                                     licznikNowejBazy = 0;
 
                                 }
                                 catch (Exception exc)
                                 {
-                                    Console.WriteLine(exc + "  problem z html");
+                                    Console.WriteLine(exc + "  problem z plikiem");
                                 }
                             }
                             catch (Exception ex)
@@ -161,17 +170,7 @@ namespace WZDE
 
                     }
 
-
                 }
-                //    catch (Exception exc)
-                //    {
-                //        Console.WriteLine(exc + "  problem z html");
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show(ex.ToString());
-                //}
             }
         }
 
@@ -204,18 +203,32 @@ namespace WZDE
             }
 
             Plik.rozdzielenieTextu(calyOdczzytanyText, ref bazaDanychPos, true);
+            BazaDanych temporary = new BazaDanych();
+            bool czyJestJednostka;
+            int ileBrakujeJednostekWStarejBazie = 0;
+            for (int i = 0; i < bazaDanychPos.Count(); i++)
+            {
+                czyJestJednostka = false;
+                foreach (var item in bazaDanych)
+                {
+                   if((bazaDanychPos[i].NrJedn.Equals(item.NrJedn)))
+                    {
+                        czyJestJednostka = true;
+                    }
+                }
+               if(!czyJestJednostka)
+                {
+                    ileBrakujeJednostekWStarejBazie++;
+                    MessageBox.Show("Nowa jednostka po scaleniu? nr: " + bazaDanychPos[i].NrJedn);
+                }
 
-
-            //foreach (var item in bazaDanychPos)
-            //{
-
-            //    Console.WriteLine(item.NrJedn + "  " + item.KW);
-            //}
+            }
+            Console.WriteLine(ileBrakujeJednostekWStarejBazie + " : brak jednostek");
         }
 
-
-
-
-
+        private void ZapisUstawien(object sender, RoutedEventArgs e)
+        {
+            zapisUstawienDomyslnych();
+        }
     }
 }

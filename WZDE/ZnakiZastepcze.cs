@@ -30,5 +30,11 @@ namespace WZDE
         readonly public static string podmiotN = "&lt;nKTOIM2LN&gt;";
         readonly public static string pJRn = "&lt;pJRn&gt;";
         readonly public static string slownieN = "&lt;sPJRn&gt;";
+
+        readonly public static string IdZglPracGeodez = "&lt;IdZglPrac&gt;";
+        readonly public static string gmina = "&lt;GMINA&gt;";
+        readonly public static string obrebEwidencyjny = "&lt;NROB&gt;";
+
+
     }
 }

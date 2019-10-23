@@ -5,10 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WZDE"
         mc:Ignorable="d"
-        Title="WZDE" Height="225" Width="400">
-    <TabPanel>
-        <Button Padding="10" Click="OtworzZPliku">Otwórz stan przed</Button>
-        <Button Padding="10" Click="OtworzStanPo" >Otwórz stan po</Button>
-        <Button Padding="10" Click="ZapiszDoPliku">Zapisz</Button>
-    </TabPanel>
+        Title="WZDE" Height="225" Width="600">
+    <StackPanel>
+        <TabPanel>
+            <Button Padding="10" Click="OtworzZPliku" >Otwórz stan przed scaleniem</Button>
+            <Button Padding="10" Click="OtworzStanPo">Otwórz stan po scaleniu</Button>
+            <Button Padding="10" Click="ZapiszDoPliku">Zapisz do pliku</Button>
+        </TabPanel>
+        <Border BorderThickness="1" CornerRadius="2" BorderBrush="Black" >
+        <WrapPanel>
+            <Label Width="100">Obręb</Label>
+            <TextBox x:Name="textBoxObręb" Text="" Width="470"></TextBox>
+        </WrapPanel>
+        </Border>
+        <Border BorderThickness="1" CornerRadius="2" BorderBrush="Black" >
+            <WrapPanel>
+                <Label Width="100">Gmina</Label>
+                <TextBox x:Name="textBoxGmina" Text="" Width="470"></TextBox>
+            </WrapPanel>
+        </Border>
+        <Border BorderThickness="1" CornerRadius="2" BorderBrush="Black" >
+            <WrapPanel>
+                <Label Width="100">Id zgł. prac geod.</Label>
+                <TextBox x:Name="textBoxIdZglPrac" Text="" Width="470"></TextBox>
+            </WrapPanel>
+        </Border>
+        <Button Click="ZapisUstawien">Zapis ustawień</Button>
+    </StackPanel>
 </Window>
