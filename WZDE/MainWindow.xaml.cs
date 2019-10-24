@@ -105,6 +105,14 @@ namespace WZDE
 
             //  Plik.rozdzielenieTextu(calyOdczzytanyText, ref bazaDanych);
             Plik.odczytMiedzyCudzyslowiami(calyOdczzytanyText, ref bazaDanych);
+            textBoxBledy.Text += "\nPlik przed scaleniem błędy:\n ";
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in bazaDanych)
+            {
+                sb.Append( BadanieKsiagWieczystych.SprawdzCyfreKontrolna(item.KW));
+            }
+            textBoxBledy.Text += sb.ToString(); 
+           
 
         }
 
@@ -201,16 +209,30 @@ namespace WZDE
             Plik.odczytMiedzyCudzyslowiami(calyOdczzytanyText, ref bazaDanychPos);
 
             BazaDanych temporary = new BazaDanych();
-            textboxBbrakujaceJednostki.Visibility = Visibility.Hidden;
-            textboxBbrakujaceJednostki.Text = "Brak jednostki rejestrowej w pliku przed scaleniem: \n";
+            //textBoxBledy.Visibility = Visibility.Hidden;
+            textBoxBledy.Text += "\nPlik po scaleniu błędy: \n";
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in bazaDanychPos)
+            {
+                sb.Append(BadanieKsiagWieczystych.SprawdzCyfreKontrolna(item.KW));
+            }
+            textBoxBledy.Text += sb.ToString();
+
+
+
             bool czyJestJednostka;
+            bool czyWypisacTytulBrakEjdn = true ;
             int ileBrakujeJednostekWStarejBazie = 0;
             string brakujacaJedn = "";
 
+
+
             if (bazaDanych != null)
             {
+                StringBuilder sbild = new StringBuilder();
                 for (int i = 0; i < bazaDanychPos.Count(); i++)
                 {
+                   
                     czyJestJednostka = false;
 
                     for (int n = 0; n < bazaDanych.Count(); n++)
@@ -224,13 +246,20 @@ namespace WZDE
 
                     if (!czyJestJednostka)
                     {
-                        ileBrakujeJednostekWStarejBazie++;
+                        if (czyWypisacTytulBrakEjdn)
+                        {
+                            czyWypisacTytulBrakEjdn = false;
+                           sbild.Append( "\nBrak nr jednostki w pliku przed scaleniem " + bazaDanychPos[i].NrJedn + "\n");
+
+
+                        }
+                      ileBrakujeJednostekWStarejBazie++;
 
 
                         if (!(brakujacaJedn.Equals(bazaDanychPos[i].NrJedn)))
                         {
-                            textboxBbrakujaceJednostki.Visibility = Visibility.Visible;
-                            textboxBbrakujaceJednostki.Text += " " + bazaDanychPos[i].NrJedn + ",";
+                           
+                            textBoxBledy.Text += " " + bazaDanychPos[i].NrJedn + ",";
                             brakujacaJedn = bazaDanychPos[i].NrJedn;
                            // MessageBoxResult mbr = MessageBox.Show("Nowa jednostka po scaleniu? nr: " + bazaDanychPos[i].NrJedn);
                         }
@@ -238,6 +267,7 @@ namespace WZDE
 
 
                 }
+                textBoxBledy.Text += sbild.ToString();
             }
             else
             {
@@ -249,6 +279,18 @@ namespace WZDE
         private void ZapisUstawien(object sender, RoutedEventArgs e)
         {
             zapisUstawienDomyslnych();
+        }
+
+        private void RadioButtonPoJednostkach_Checked(object sender, RoutedEventArgs e)
+        {
+            radioButtonPoJednostkach.IsChecked = true;
+            radioButtonPoKW.IsChecked = false;
+        }
+
+        private void RadioButtonPoKW_Checked(object sender, RoutedEventArgs e)
+        {
+            radioButtonPoJednostkach.IsChecked = false;
+            radioButtonPoKW.IsChecked = true;
         }
     }
 }

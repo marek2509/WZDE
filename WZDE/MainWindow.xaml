@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WZDE"
         mc:Ignorable="d"
-        Title="WZDE-> inż. Marek Wojciechowicz" Height="350" Width="600">
+        Title="WZDE-> inż. Marek Wojciechowicz" Height="430" Width="600">
     <StackPanel>
            <Grid HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -78,9 +78,18 @@
             </Grid>
         </Border>
         <Button Click="ZapisUstawien" Padding="10" >Zapis powyższych ustawień</Button>
-        <TextBox IsReadOnly="True" x:Name="textboxBbrakujaceJednostki" Height="60">
+        <Grid Height="110">
+            <Grid.ColumnDefinitions></Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" >
+                <TextBox IsReadOnly="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1" x:Name="textBoxBledy" MinWidth="90" Width="AUTO" Height="AUTO"></TextBox>
+        </ScrollViewer>
+        </Grid>
+        <WrapPanel>
             
-        </TextBox>
+        <RadioButton  x:Name="radioButtonPoJednostkach" Margin="40,0" Checked="RadioButtonPoJednostkach_Checked"> Wczytanie txt sortowanych po jednostkach</RadioButton>
+        <RadioButton  x:Name="radioButtonPoKW" IsChecked="True" Checked="RadioButtonPoKW_Checked">Wczytanie txt sortowanych po KW</RadioButton>
+            
+        </WrapPanel>
     </StackPanel>
 
 </Window>
