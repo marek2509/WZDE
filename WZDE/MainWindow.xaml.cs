@@ -1,19 +1,9 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WZDE
 {
@@ -32,6 +22,9 @@ namespace WZDE
                 textBoxIdZglPrac.Text = Properties.Settings.Default.IdZglPrac;
                 textBoxObręb.Text = Properties.Settings.Default.Obreb;
                 textBoxGmina.Text = Properties.Settings.Default.Gmina;
+                textBoxNrDecyzji.Text = Properties.Settings.Default.nrDecyzjiStarosty;
+                textBoxMiejsceStarosty.Text = Properties.Settings.Default.MiejsceStarosty;
+                textBoxdecyzjaZdnia.Text = Properties.Settings.Default.decyzjaZdnia;
             }
             catch (Exception e)
             {
@@ -43,9 +36,12 @@ namespace WZDE
         {
             try
             {
-                   Properties.Settings.Default.IdZglPrac = textBoxIdZglPrac.Text;
-                   Properties.Settings.Default.Gmina = textBoxGmina.Text;
-                   Properties.Settings.Default.Obreb = textBoxObręb.Text;
+                Properties.Settings.Default.IdZglPrac = textBoxIdZglPrac.Text;
+                Properties.Settings.Default.Gmina = textBoxGmina.Text;
+                Properties.Settings.Default.Obreb = textBoxObręb.Text;
+                Properties.Settings.Default.nrDecyzjiStarosty = textBoxNrDecyzji.Text;
+                Properties.Settings.Default.MiejsceStarosty = textBoxMiejsceStarosty.Text;
+                Properties.Settings.Default.decyzjaZdnia = textBoxdecyzjaZdnia.Text;
                 Properties.Settings.Default.Save();
             }
             catch (Exception e)
@@ -109,10 +105,6 @@ namespace WZDE
 
             Plik.rozdzielenieTextu(calyOdczzytanyText, ref bazaDanych);
 
-            //for (int i = 0; i < bazaDanych.Count(); i++)
-            //{
-            //    Console.WriteLine("kw m " + bazaDanych[i].KW);
-            //}
         }
 
         private void ZapiszDoPliku(object sender, RoutedEventArgs e)
@@ -127,7 +119,7 @@ namespace WZDE
                 string dokHTML = WczytaneTekstowki.szablon;
                 int licznikNowejBazy = 0;
 
-               // Console.WriteLine(bazaDanych.Count() + "count");
+                // Console.WriteLine(bazaDanych.Count() + "count");
 
                 for (int i = 0; i < bazaDanych.Count(); i++)
                 {
@@ -136,27 +128,27 @@ namespace WZDE
                     if ((i < bazaDanych.Count() - 1) && (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn)))
                     {
 
-                       // Console.WriteLine("       if (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn))");
+                        // Console.WriteLine("       if (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn))");
                         bazaTmp[++licznikNowejBazy] = bazaDanych[i];
 
                     }
                     else
                     {
                         Console.WriteLine("else");
-
-                        using (Stream s = File.Open(svd.FileName + i + ".doc", FileMode.Create))
+                        
+                        using (Stream s = File.Open(svd.FileName + bazaTmp[0].NrJedn + ".doc", FileMode.Create))
                         using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
-
+                            
                             try
                             {
 
                                 try
                                 {
-                                   
+
 
                                     sw.WriteLine(Plik.generowanieRejestru(dokHTML, bazaTmp, bazaDanychPos, licznikNowejBazy));
                                     licznikNowejBazy = 0;
-
+                                    sw.Close();
                                 }
                                 catch (Exception exc)
                                 {
@@ -211,12 +203,12 @@ namespace WZDE
                 czyJestJednostka = false;
                 foreach (var item in bazaDanych)
                 {
-                   if((bazaDanychPos[i].NrJedn.Equals(item.NrJedn)))
+                    if ((bazaDanychPos[i].NrJedn.Equals(item.NrJedn)))
                     {
                         czyJestJednostka = true;
                     }
                 }
-               if(!czyJestJednostka)
+                if (!czyJestJednostka)
                 {
                     ileBrakujeJednostekWStarejBazie++;
                     MessageBox.Show("Nowa jednostka po scaleniu? nr: " + bazaDanychPos[i].NrJedn);

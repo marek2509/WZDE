@@ -58,5 +58,41 @@ namespace WZDE.Properties {
                 this["IdZglPrac"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MiejsceStarosty {
+            get {
+                return ((string)(this["MiejsceStarosty"]));
+            }
+            set {
+                this["MiejsceStarosty"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string nrDecyzjiStarosty {
+            get {
+                return ((string)(this["nrDecyzjiStarosty"]));
+            }
+            set {
+                this["nrDecyzjiStarosty"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string decyzjaZdnia {
+            get {
+                return ((string)(this["decyzjaZdnia"]));
+            }
+            set {
+                this["decyzjaZdnia"] = value;
+            }
+        }
     }
 }

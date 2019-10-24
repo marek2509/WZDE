@@ -29,12 +29,8 @@ namespace WZDE
             }
             return all;
         }
-/*
-        public void rozdzielenieLiniZCudzyslowami() // rozdziela linie np ' 1 ' ' 21 ' ' elo'
-        {
 
-        }
-        */
+        
         public static void rozdzielenieTextu(string calyTextDoRozdzielenia, ref BazaDanych[] bazaDanych, bool opcjaZRowem = false) //odczyt z pliku z wyjatkami niepowodzenia należy podać ścieżkę, zwraca tablicę odczytaną z pliku
         {
             string[] lines = null;
@@ -552,13 +548,25 @@ namespace WZDE
             dokHTML = dokHTML.Replace(ZnakiZastepcze.gmina, Properties.Settings.Default.Gmina);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.IdZglPracGeodez, Properties.Settings.Default.IdZglPrac);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.KWn, baza[0].KW);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.starostaW, Properties.Settings.Default.MiejsceStarosty);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.nrDecyzji, Properties.Settings.Default.nrDecyzjiStarosty);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.decyzjaZdnia, Properties.Settings.Default.decyzjaZdnia);
 
             if (bazaPoscalWyszukana.Count() > 0)
             {
+
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, oblPowJednoskiPoUzytku(bazaPoscalWyszukana));
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.jednRejesrtNowa, bazaPoscalWyszukana[0].NrJedn);
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, bazaPoscalWyszukana[0].Podmiot);
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
 
+            }
+            else
+            {
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn,"");
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.jednRejesrtNowa, "");
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, "");
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, "");
             }
 
             return dokHTML;

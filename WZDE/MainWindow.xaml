@@ -5,31 +5,80 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WZDE"
         mc:Ignorable="d"
-        Title="WZDE" Height="225" Width="600">
+        Title="WZDE-> inż. Marek Wojciechowicz" Height="300" Width="600">
     <StackPanel>
-        <TabPanel>
-            <Button Padding="10" Click="OtworzZPliku" >Otwórz stan przed scaleniem</Button>
-            <Button Padding="10" Click="OtworzStanPo">Otwórz stan po scaleniu</Button>
-            <Button Padding="10" Click="ZapiszDoPliku">Zapisz do pliku</Button>
-        </TabPanel>
+           <Grid HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Padding="10" Click="OtworzZPliku" >Otwórz stan przed scaleniem</Button>
+            <Button Grid.Column="1" Padding="10" Click="OtworzStanPo">Otwórz stan po scaleniu</Button>
+            <Button Grid.Column="2" Padding="10" Click="ZapiszDoPliku">Zapisz do pliku</Button>
+        </Grid>
         <Border BorderThickness="1" CornerRadius="2" BorderBrush="Black" >
-        <WrapPanel>
-            <Label Width="100">Obręb</Label>
-            <TextBox x:Name="textBoxObręb" Text="" Width="470"></TextBox>
-        </WrapPanel>
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0">Obręb</Label>
+                <TextBox Grid.Column="1" x:Name="textBoxObręb" Text="" ></TextBox>
+            </Grid>
         </Border>
         <Border BorderThickness="1" CornerRadius="2" BorderBrush="Black" >
-            <WrapPanel>
-                <Label Width="100">Gmina</Label>
-                <TextBox x:Name="textBoxGmina" Text="" Width="470"></TextBox>
-            </WrapPanel>
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" >Gmina</Label>
+                <TextBox Grid.Column="1" x:Name="textBoxGmina" Text="" ></TextBox>
+            </Grid>
         </Border>
         <Border BorderThickness="1" CornerRadius="2" BorderBrush="Black" >
-            <WrapPanel>
-                <Label Width="100">Id zgł. prac geod.</Label>
-                <TextBox x:Name="textBoxIdZglPrac" Text="" Width="470"></TextBox>
-            </WrapPanel>
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0">Id zgł. prac geod.</Label>
+                <TextBox Grid.Column="1" x:Name="textBoxIdZglPrac" Text=""></TextBox>
+            </Grid>
         </Border>
-        <Button Click="ZapisUstawien">Zapis ustawień</Button>
+        <Border BorderThickness="1" CornerRadius="2" BorderBrush="Black" >
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0">Dec. Starosty Powiatowego w</Label>
+                <TextBox Grid.Column="1" x:Name="textBoxMiejsceStarosty" Text="" ></TextBox>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" CornerRadius="2" BorderBrush="Black" >
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0">nr decyzji</Label>
+                <TextBox Grid.Column="1" x:Name="textBoxNrDecyzji" Text="" ></TextBox>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" CornerRadius="2" BorderBrush="Black" >
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0">Decyzja z dnia</Label>
+                <TextBox Grid.Column="1" x:Name="textBoxdecyzjaZdnia" Text="" ></TextBox>
+            </Grid>
+        </Border>
+        <Button Click="ZapisUstawien" Padding="10" >Zapis powyższych ustawień</Button>
+
     </StackPanel>
+
 </Window>

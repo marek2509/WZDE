@@ -11,5 +11,14 @@
     <Setting Name="IdZglPrac" Type="System.String" Scope="User">
       <Value Profile="(Default)">GK.6642.</Value>
     </Setting>
+    <Setting Name="MiejsceStarosty" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="nrDecyzjiStarosty" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="decyzjaZdnia" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
