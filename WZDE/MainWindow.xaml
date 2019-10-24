@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WZDE"
         mc:Ignorable="d"
-        Title="WZDE-> inż. Marek Wojciechowicz" Height="300" Width="600">
+        Title="WZDE-> inż. Marek Wojciechowicz" Height="350" Width="600">
     <StackPanel>
            <Grid HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -78,7 +78,9 @@
             </Grid>
         </Border>
         <Button Click="ZapisUstawien" Padding="10" >Zapis powyższych ustawień</Button>
-
+        <TextBox IsReadOnly="True" x:Name="textboxBbrakujaceJednostki" Height="60">
+            
+        </TextBox>
     </StackPanel>
 
 </Window>

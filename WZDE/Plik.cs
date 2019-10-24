@@ -30,7 +30,51 @@ namespace WZDE
             return all;
         }
 
-        
+        public static void odczytMiedzyCudzyslowiami(string calyTextDoRozdzielenia, ref BazaDanych[] bazaDanych)
+        {
+            string[] lines = null;
+            string[] separators = { "\n" };
+            string[] separators2 = { "'", "\"" };
+            string[] wartosciZTxt = null;
+
+            try
+            {
+                lines = calyTextDoRozdzielenia.Split(separators, StringSplitOptions.RemoveEmptyEntries); //podzial na linie
+            }
+            catch
+            {
+
+            }
+
+            bazaDanych = new BazaDanych[lines.Length];
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                bazaDanych[i] = new BazaDanych();
+
+                wartosciZTxt = lines[i].Split(separators2, StringSplitOptions.None);
+                try
+                {
+                    bazaDanych[i].Obreb = wartosciZTxt[1].Trim();
+                    bazaDanych[i].NrJedn = wartosciZTxt[3].Trim();
+                    bazaDanych[i].Dzialka = wartosciZTxt[5].Trim();
+                    bazaDanych[i].PowierzchniaDzialki = wartosciZTxt[7].Trim();
+                    bazaDanych[i].OFU = wartosciZTxt[9].Trim();
+                    bazaDanych[i].OZU = wartosciZTxt[11].Trim();
+                    bazaDanych[i].Klasa = wartosciZTxt[13].Trim();
+                    bazaDanych[i].PowierzchniaUzytku = wartosciZTxt[15].Trim();
+                    bazaDanych[i].Podmiot = wartosciZTxt[17].Trim();
+                    bazaDanych[i].KW = wartosciZTxt[19].Trim();
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show(" PROBLEM Z TEKSTÓWKA! błędna linia: " + i, "ERROR", MessageBoxButton.OK);
+                }
+ 
+            }
+
+        }
+
         public static void rozdzielenieTextu(string calyTextDoRozdzielenia, ref BazaDanych[] bazaDanych, bool opcjaZRowem = false) //odczyt z pliku z wyjatkami niepowodzenia należy podać ścieżkę, zwraca tablicę odczytaną z pliku
         {
             string[] lines = null;
@@ -235,23 +279,32 @@ namespace WZDE
 
         public static BazaDanych[] wyszukanieBazyPoScaleniu(BazaDanych[] bazaDanychPoScaleniu, string wyszukiwanaJednostka)
         {
-
-            int iloscElemWyszukanych = 0;
-            foreach (var item in bazaDanychPoScaleniu)
+            
+            if (bazaDanychPoScaleniu != null)
             {
-                if (item.NrJedn.Equals(wyszukiwanaJednostka)) iloscElemWyszukanych++;
-            }
-            BazaDanych[] wyszukanaBaza = new BazaDanych[iloscElemWyszukanych];
+                int iloscElemWyszukanych = 0;
+                foreach (var item in bazaDanychPoScaleniu)
+                {
+                    if (item.NrJedn.Equals(wyszukiwanaJednostka)) iloscElemWyszukanych++;
+                }
+                BazaDanych[] wyszukanaBaza = new BazaDanych[iloscElemWyszukanych];
 
-            int iterator = 0;
-            foreach (var item in bazaDanychPoScaleniu)
+                int iterator = 0;
+                foreach (var item in bazaDanychPoScaleniu)
+                {
+                    if (item.NrJedn.Equals(wyszukiwanaJednostka))
+
+                        wyszukanaBaza[iterator++] = item;
+                }
+                return wyszukanaBaza;
+            }
+            else
             {
-                if (item.NrJedn.Equals(wyszukiwanaJednostka))
-
-                    wyszukanaBaza[iterator++] = item;
+                BazaDanych[] wyszukanaBaza = new BazaDanych[0];
+                return wyszukanaBaza;
             }
 
-            return wyszukanaBaza;
+           
         }
 
 

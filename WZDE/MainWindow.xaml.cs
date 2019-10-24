@@ -103,7 +103,8 @@ namespace WZDE
             //    bazaDanych[i] = new BazaDanych();
             //}
 
-            Plik.rozdzielenieTextu(calyOdczzytanyText, ref bazaDanych);
+            //  Plik.rozdzielenieTextu(calyOdczzytanyText, ref bazaDanych);
+            Plik.odczytMiedzyCudzyslowiami(calyOdczzytanyText, ref bazaDanych);
 
         }
 
@@ -120,48 +121,50 @@ namespace WZDE
                 int licznikNowejBazy = 0;
 
                 // Console.WriteLine(bazaDanych.Count() + "count");
-
-                for (int i = 0; i < bazaDanych.Count(); i++)
+                if (bazaDanych != null)
                 {
-                    bazaTmp[licznikNowejBazy] = bazaDanych[i];
-
-                    if ((i < bazaDanych.Count() - 1) && (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn)))
+                    for (int i = 0; i < bazaDanych.Count(); i++)
                     {
+                        bazaTmp[licznikNowejBazy] = bazaDanych[i];
 
-                        // Console.WriteLine("       if (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn))");
-                        bazaTmp[++licznikNowejBazy] = bazaDanych[i];
+                        if ((i < bazaDanych.Count() - 1) && (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn)))
+                        {
 
-                    }
-                    else
-                    {
-                        Console.WriteLine("else");
-                        
-                        using (Stream s = File.Open(svd.FileName + bazaTmp[0].NrJedn + ".doc", FileMode.Create))
-                        using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
-                            
-                            try
-                            {
+                            // Console.WriteLine("       if (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn))");
+                            bazaTmp[++licznikNowejBazy] = bazaDanych[i];
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("else");
+
+                            using (Stream s = File.Open(svd.FileName + bazaTmp[0].NrJedn + ".doc", FileMode.Create))
+                            using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
 
                                 try
                                 {
 
+                                    try
+                                    {
 
-                                    sw.WriteLine(Plik.generowanieRejestru(dokHTML, bazaTmp, bazaDanychPos, licznikNowejBazy));
-                                    licznikNowejBazy = 0;
-                                    sw.Close();
+
+                                        sw.WriteLine(Plik.generowanieRejestru(dokHTML, bazaTmp, bazaDanychPos, licznikNowejBazy));
+                                        licznikNowejBazy = 0;
+                                        sw.Close();
+                                    }
+                                    catch (Exception exc)
+                                    {
+                                        Console.WriteLine(exc + "  problem z plikiem");
+                                    }
                                 }
-                                catch (Exception exc)
+                                catch (Exception ex)
                                 {
-                                    Console.WriteLine(exc + "  problem z plikiem");
+                                    MessageBox.Show(ex.ToString());
                                 }
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.ToString());
-                            }
+
+                        }
 
                     }
-
                 }
             }
         }
@@ -194,26 +197,51 @@ namespace WZDE
                 }
             }
 
-            Plik.rozdzielenieTextu(calyOdczzytanyText, ref bazaDanychPos, true);
+            // Plik.rozdzielenieTextu(calyOdczzytanyText, ref bazaDanychPos, true);
+            Plik.odczytMiedzyCudzyslowiami(calyOdczzytanyText, ref bazaDanychPos);
+
             BazaDanych temporary = new BazaDanych();
+            textboxBbrakujaceJednostki.Visibility = Visibility.Hidden;
+            textboxBbrakujaceJednostki.Text = "Brak jednostki rejestrowej w pliku przed scaleniem: \n";
             bool czyJestJednostka;
             int ileBrakujeJednostekWStarejBazie = 0;
-            for (int i = 0; i < bazaDanychPos.Count(); i++)
-            {
-                czyJestJednostka = false;
-                foreach (var item in bazaDanych)
-                {
-                    if ((bazaDanychPos[i].NrJedn.Equals(item.NrJedn)))
-                    {
-                        czyJestJednostka = true;
-                    }
-                }
-                if (!czyJestJednostka)
-                {
-                    ileBrakujeJednostekWStarejBazie++;
-                    MessageBox.Show("Nowa jednostka po scaleniu? nr: " + bazaDanychPos[i].NrJedn);
-                }
+            string brakujacaJedn = "";
 
+            if (bazaDanych != null)
+            {
+                for (int i = 0; i < bazaDanychPos.Count(); i++)
+                {
+                    czyJestJednostka = false;
+
+                    for (int n = 0; n < bazaDanych.Count(); n++)
+                    {
+                        if ((bazaDanychPos[i].NrJedn.Equals(bazaDanych[n].NrJedn)))
+                        {
+                            czyJestJednostka = true;
+                        }
+
+                    }
+
+                    if (!czyJestJednostka)
+                    {
+                        ileBrakujeJednostekWStarejBazie++;
+
+
+                        if (!(brakujacaJedn.Equals(bazaDanychPos[i].NrJedn)))
+                        {
+                            textboxBbrakujaceJednostki.Visibility = Visibility.Visible;
+                            textboxBbrakujaceJednostki.Text += " " + bazaDanychPos[i].NrJedn + ",";
+                            brakujacaJedn = bazaDanychPos[i].NrJedn;
+                           // MessageBoxResult mbr = MessageBox.Show("Nowa jednostka po scaleniu? nr: " + bazaDanychPos[i].NrJedn);
+                        }
+                    }
+
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("OTWÓRZ NAJPIERW STAN PRZED SCALENIEM!");
             }
             Console.WriteLine(ileBrakujeJednostekWStarejBazie + " : brak jednostek");
         }
