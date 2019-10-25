@@ -647,13 +647,14 @@ namespace WZDE
 
      static string dopisanieDo4MiejscPoPrzec(string liczba)
         {
-      
-
+            int indexPrzecinka = 0;
+            int ostatniIndex = 0;
+            char[] tabl;
             Console.WriteLine(liczba + "  ");
-
-            int indexPrzecinka = liczba.Trim().IndexOf(',');
-            char[] l = liczba.ToCharArray();
-            int ostatniIndex = liczba.Length - 1;
+            liczba = liczba.ToString();
+            indexPrzecinka = liczba.LastIndexOf(",");
+             tabl = liczba.ToCharArray();
+             ostatniIndex = liczba.Length - 1;
 
 
             if (ostatniIndex < 0)
