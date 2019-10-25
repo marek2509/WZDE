@@ -101,7 +101,9 @@ namespace WZDE
                     bazaDanych[i].OFU = wartosciZTxt[9].Trim();
                     bazaDanych[i].OZU = wartosciZTxt[11].Trim();
                     bazaDanych[i].Klasa = wartosciZTxt[13].Trim();
-                    bazaDanych[i].PowierzchniaUzytku = wartosciZTxt[15].Trim();
+                    //    bazaDanych[i].PowierzchniaUzytku = wartosciZTxt[15].Trim();
+
+                    bazaDanych[i].PowierzchniaUzytku = metodaDopisujeZera(wartosciZTxt[15].Trim());
                     bazaDanych[i].Podmiot = wartosciZTxt[17].Trim();
                     bazaDanych[i].KW = wartosciZTxt[19].Trim();
                 }
