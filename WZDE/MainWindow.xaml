@@ -84,12 +84,14 @@
                 <TextBox IsReadOnly="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1" x:Name="textBoxBledy" MinWidth="90" Width="AUTO" Height="AUTO"></TextBox>
         </ScrollViewer>
         </Grid>
-        <WrapPanel>
-            
+        <Border Margin="0,7,0,0" Padding="5" BorderThickness="1" CornerRadius="5" BorderBrush="Black" >
+            <WrapPanel>
+          
         <RadioButton  x:Name="radioButtonPoJednostkach" Margin="40,0" Checked="RadioButtonPoJednostkach_Checked"> Wczytanie txt sortowanych po jednostkach</RadioButton>
         <RadioButton  x:Name="radioButtonPoKW" IsChecked="True" Checked="RadioButtonPoKW_Checked">Wczytanie txt sortowanych po KW</RadioButton>
-            
+           
         </WrapPanel>
+            </Border>
     </StackPanel>
 
 </Window>

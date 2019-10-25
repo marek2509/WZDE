@@ -13,10 +13,16 @@ namespace WZDE
         static char[] szyfr = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'W', 'Y', 'Z' };
        
 
-        public static string SprawdzCyfreKontrolna(string KsiegaWieczysta)
+        public static string SprawdzCyfreKontrolna(string KsiegaWieczysta, string dzialki)
         {
-            StringBuilder bledySB = new StringBuilder();
            
+            StringBuilder bledySB = new StringBuilder();
+            if (KsiegaWieczysta == null)
+            {
+                bledySB.Append("brak ksiegi");
+                goto koniec;
+
+            }
             int sumaKontrolna;
            
             char[] textBox1 = new char[15];
@@ -28,7 +34,7 @@ namespace WZDE
 
             if (textBox1.Length != 15)
             {
-                bledySB.Append("problem z ksiega: " + KsiegaWieczysta + "\n");
+                bledySB.Append("dzialka:" + dzialki + " problem z ksiega: " + KsiegaWieczysta + "\n");
                 goto koniec;
             }
             for (int i = 5; i < 13; i++)

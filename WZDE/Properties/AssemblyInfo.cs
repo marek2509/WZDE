@@ -8,11 +8,11 @@ using System.Windows;
 // zestaw atrybutów. Zmień wartości tych atrybutów, aby zmodyfikować informacje
 // powiązane z zestawem.
 [assembly: AssemblyTitle("WZDE")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("inż. Marek Wojciechowicz")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WZDE")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCompany("inż. Marek Wojciechowicz")]
+[assembly: AssemblyProduct("inż. Marek Wojciechowicz")]
+[assembly: AssemblyCopyright("inż. Marek Wojciechowicz Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

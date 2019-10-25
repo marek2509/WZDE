@@ -59,5 +59,306 @@ namespace WZDE.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;tr&gt;
+        ///   &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+        ///  normal;text-autospace:none&apos;&gt;&lt;span style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;
+        ///  color:black&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:non [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string Ldzialka {
+            get {
+                return ResourceManager.GetString("Ldzialka", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;tr&gt;
+        ///   &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+        ///  normal;text-align:center;text-autospace:none&apos;&gt;&lt;span style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;
+        ///  color:black&apos;&gt;&amp;lt;JrS&amp;gt;&lt;/span&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext  [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string LdzialkaKW {
+            get {
+                return ResourceManager.GetString("LdzialkaKW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;tr&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+        ///  normal;text-autospace:none&apos;&gt;&lt;span style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;
+        ///  color:black&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string Lpusty {
+            get {
+                return ResourceManager.GetString("Lpusty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;tr&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+        ///  normal;text-autospace:none&apos;&gt;&lt;span style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;
+        ///  color:black&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string LpustyKW {
+            get {
+                return ResourceManager.GetString("LpustyKW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu  &lt;tr&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+        ///  normal;text-autospace:none&apos;&gt;&lt;span style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;
+        ///  color:black&apos;&gt;&lt;/span&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;bord [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string Luzytek {
+            get {
+                return ResourceManager.GetString("Luzytek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu  &lt;tr&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+        ///  normal;text-autospace:none&apos;&gt;&lt;span style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;
+        ///  color:black&apos;&gt;&lt;/span&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;bord [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string LuzytekKW {
+            get {
+                return ResourceManager.GetString("LuzytekKW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu 
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal align=center style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;
+        ///  text-align:center;line-height:normal;text-autospace:none&apos;&gt;&lt;b&gt;&lt;span
+        ///  style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;color:black&apos;&gt;&amp;lt;nDZ&amp;gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:sol [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string Pdzialka {
+            get {
+                return ResourceManager.GetString("Pdzialka", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu 
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal align=center style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;
+        ///  text-align:center;line-height:normal;text-autospace:none&apos;&gt;&lt;b&gt;&lt;span
+        ///  style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;color:black&apos;&gt;&amp;lt;nDZ&amp;gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:sol [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string PdzialkaKW {
+            get {
+                return ResourceManager.GetString("PdzialkaKW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal align=center style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;
+        ///  text-align:center;line-height:normal;text-autospace:none&apos;&gt;&lt;b&gt;&lt;span
+        ///  style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;color:black&apos;&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1 [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string Ppusty {
+            get {
+                return ResourceManager.GetString("Ppusty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal align=center style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;
+        ///  text-align:center;line-height:normal;text-autospace:none&apos;&gt;&lt;b&gt;&lt;span
+        ///  style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;color:black&apos;&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1 [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string PpustyKW {
+            get {
+                return ResourceManager.GetString("PpustyKW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu 
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+        ///  normal;text-autospace:none&apos;&gt;&lt;span style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;
+        ///  color:black&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;bor [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string Puzytek {
+            get {
+                return ResourceManager.GetString("Puzytek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu 
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+        ///  normal;text-autospace:none&apos;&gt;&lt;span style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;
+        ///  color:black&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;bor [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string PuzytekKW {
+            get {
+                return ResourceManager.GetString("PuzytekKW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;html&gt;
+        ///
+        ///&lt;head&gt;
+        ///&lt;meta http-equiv=Content-Type content=&quot;text/html; charset=windows-1250&quot;&gt;
+        ///&lt;meta name=Generator content=&quot;Microsoft Word 12 (filtered)&quot;&gt;
+        ///&lt;style&gt;
+        ///&lt;!--
+        /// /* Font Definitions */
+        /// @font-face
+        ///	{font-family:&quot;Cambria Math&quot;;
+        ///	panose-1:2 4 5 3 5 4 6 3 2 4;}
+        ///@font-face
+        ///	{font-family:Calibri;
+        ///	panose-1:2 15 5 2 2 2 4 3 2 4;}
+        ///@font-face
+        ///	{font-family:&quot;Arial Narrow&quot;;
+        ///	panose-1:2 11 6 6 2 2 2 3 2 4;}
+        ///@font-face
+        ///	{font-family:&quot;FL Pismo Techniczne&quot;;
+        ///	panose-1:0 0 0 0 0 0 0 0 0 0;}
+        /// /* Style D [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string SZABLON {
+            get {
+                return ResourceManager.GetString("SZABLON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;html&gt;
+        ///
+        ///&lt;head&gt;
+        ///&lt;meta http-equiv=Content-Type content=&quot;text/html; charset=windows-1250&quot;&gt;
+        ///&lt;meta name=Generator content=&quot;Microsoft Word 12 (filtered)&quot;&gt;
+        ///&lt;style&gt;
+        ///&lt;!--
+        /// /* Font Definitions */
+        /// @font-face
+        ///	{font-family:&quot;Cambria Math&quot;;
+        ///	panose-1:2 4 5 3 5 4 6 3 2 4;}
+        ///@font-face
+        ///	{font-family:Calibri;
+        ///	panose-1:2 15 5 2 2 2 4 3 2 4;}
+        ///@font-face
+        ///	{font-family:&quot;Arial Narrow&quot;;
+        ///	panose-1:2 11 6 6 2 2 2 3 2 4;}
+        ///@font-face
+        ///	{font-family:&quot;FL Pismo Techniczne&quot;;
+        ///	panose-1:0 0 0 0 0 0 0 0 0 0;}
+        /// /* Style D [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string SZABLON_org_ {
+            get {
+                return ResourceManager.GetString("SZABLON_org_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;html&gt;
+        ///
+        ///&lt;head&gt;
+        ///&lt;meta http-equiv=Content-Type content=&quot;text/html; charset=windows-1250&quot;&gt;
+        ///&lt;meta name=Generator content=&quot;Microsoft Word 12 (filtered)&quot;&gt;
+        ///&lt;style&gt;
+        ///&lt;!--
+        /// /* Font Definitions */
+        /// @font-face
+        ///	{font-family:&quot;Cambria Math&quot;;
+        ///	panose-1:2 4 5 3 5 4 6 3 2 4;}
+        ///@font-face
+        ///	{font-family:Calibri;
+        ///	panose-1:2 15 5 2 2 2 4 3 2 4;}
+        ///@font-face
+        ///	{font-family:&quot;Arial Narrow&quot;;
+        ///	panose-1:2 11 6 6 2 2 2 3 2 4;}
+        ///@font-face
+        ///	{font-family:&quot;FL Pismo Techniczne&quot;;
+        ///	panose-1:0 0 0 0 0 0 0 0 0 0;}
+        /// /* Style D [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string SZABLONKW {
+            get {
+                return ResourceManager.GetString("SZABLONKW", resourceCulture);
+            }
+        }
     }
 }

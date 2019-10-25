@@ -19,12 +19,70 @@ namespace WZDE
         //public static readonly string uzytekStaryDzialkaNowa = System.IO.File.ReadAllText(@"wierszUzStDZnow.txt");
         //public static readonly string pustyPusty = System.IO.File.ReadAllText(@"pustyPusty.txt");
 
-        public static readonly string szablon = System.IO.File.ReadAllText(@"SZABLON.txt");
-        public static readonly string Ldzialka = System.IO.File.ReadAllText(@"Ldzialka.txt");
-        public static readonly string Lpusty = System.IO.File.ReadAllText(@"Lpusty.txt");
-        public static readonly string Luzytek = System.IO.File.ReadAllText(@"Luzytek.txt");
-        public static readonly string Pdzialka = System.IO.File.ReadAllText(@"Pdzialka.txt");
-        public static readonly string Ppusty = System.IO.File.ReadAllText(@"Ppusty.txt");
-        public static readonly string Puzytek = System.IO.File.ReadAllText(@"Puzytek.txt");
-    }
+          
+ 	  
+
+       
+		  public static readonly string szablon;
+        public static readonly string Pdzialka;
+        public static readonly string Ldzialka;
+        public static readonly string Lpusty;
+        public static readonly string Luzytek;
+        public static readonly string Ppusty;
+        public static readonly string Puzytek;
+
+        public static readonly string szablonKW;
+        public static readonly string PdzialkaKW;
+        public static readonly string LdzialkaKW;
+        public static readonly string LpustyKW;
+        public static readonly string LuzytekKW;
+        public static readonly string PpustyKW;
+        public static readonly string PuzytekKW;
+
+        static WczytaneTekstowki()
+        {
+            try
+            {
+            szablon = System.IO.File.ReadAllText(@"SZABLON.txt");
+            Pdzialka = System.IO.File.ReadAllText(@"Pdzialka.txt");
+            Ldzialka = System.IO.File.ReadAllText(@"Ldzialka.txt");
+            Lpusty = System.IO.File.ReadAllText(@"Lpusty.txt");
+            Luzytek = System.IO.File.ReadAllText(@"Luzytek.txt");
+            Ppusty = System.IO.File.ReadAllText(@"Ppusty.txt");
+            Puzytek = System.IO.File.ReadAllText(@"Puzytek.txt");
+
+            szablonKW = System.IO.File.ReadAllText(@"SZABLONKW.txt");
+            PdzialkaKW = System.IO.File.ReadAllText(@"PdzialkaKW.txt");
+            LdzialkaKW = System.IO.File.ReadAllText(@"LdzialkaKW.txt");
+            LpustyKW = System.IO.File.ReadAllText(@"LpustyKW.txt");
+            LuzytekKW = System.IO.File.ReadAllText(@"LuzytekKW.txt");
+            PpustyKW = System.IO.File.ReadAllText(@"PpustyKW.txt");
+            PuzytekKW = System.IO.File.ReadAllText(@"PuzytekKW.txt");
+            }
+            catch
+            {
+                szablon = Properties.Resources.SZABLON;
+                Pdzialka = Properties.Resources.Pdzialka;
+                Ldzialka = Properties.Resources.Ldzialka;
+                Lpusty = Properties.Resources.Lpusty;
+                Luzytek = Properties.Resources.Luzytek;
+                Ppusty = Properties.Resources.Ppusty;
+                Puzytek = Properties.Resources.Puzytek;
+
+                szablonKW = Properties.Resources.SZABLONKW;
+                PdzialkaKW = Properties.Resources.PdzialkaKW;
+                LdzialkaKW = Properties.Resources.LdzialkaKW;
+                LpustyKW = Properties.Resources.LpustyKW;
+                LuzytekKW = Properties.Resources.LuzytekKW;
+                PpustyKW = Properties.Resources.PpustyKW;
+                PuzytekKW = Properties.Resources.PuzytekKW;
+            }
+        }
+
+
+
+
+
+
+}
 }

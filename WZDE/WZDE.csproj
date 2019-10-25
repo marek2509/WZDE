@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -149,6 +149,51 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="WZDE.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\Ldzialka.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\LdzialkaKW.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\Lpusty.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\LpustyKW.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\Luzytek.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\LuzytekKW.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\Pdzialka.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\PdzialkaKW.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\Ppusty.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\PpustyKW.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\Puzytek.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\PuzytekKW.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\SZABLON%28org%29.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\SZABLON.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\SZABLONKW.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
