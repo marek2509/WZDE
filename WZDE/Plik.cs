@@ -30,6 +30,39 @@ namespace WZDE
             return all;
         }
 
+
+        public static string metodaDopisujeZera(string liczba)
+        {
+
+            if (liczba.Length - liczba.IndexOf(",") == 5)
+            {
+
+            }
+            else if (liczba.Length - liczba.IndexOf(",") == 4)
+            {
+                liczba += "0";
+            }
+            else if (liczba.Length - liczba.IndexOf(",") == 3)
+            {
+                liczba += "00";
+            }
+            else if (liczba.Length - liczba.IndexOf(",") == 2)
+            {
+                liczba += "000";
+            }
+            else if (liczba.Length - liczba.IndexOf(",") == 1)
+            {
+                liczba += "0000";
+            }
+            else
+            {
+                liczba += ",0000";
+            }
+
+
+            return liczba;
+        }
+
         public static void odczytMiedzyCudzyslowiami(string calyTextDoRozdzielenia, ref BazaDanych[] bazaDanych)
         {
             string[] lines = null;
@@ -58,7 +91,13 @@ namespace WZDE
                     bazaDanych[i].Obreb = wartosciZTxt[1].Trim();
                     bazaDanych[i].NrJedn = wartosciZTxt[3].Trim();
                     bazaDanych[i].Dzialka = wartosciZTxt[5].Trim();
-                    bazaDanych[i].PowierzchniaDzialki = wartosciZTxt[7].Trim();
+                    //   bazaDanych[i].PowierzchniaDzialki = wartosciZTxt[7].Trim();
+
+
+                    bazaDanych[i].PowierzchniaDzialki = metodaDopisujeZera(wartosciZTxt[7].Trim());
+                    // Console.WriteLine("tutaj " + metodaDopisujeZera(bazaDanych[i].PowierzchniaDzialki));
+
+
                     bazaDanych[i].OFU = wartosciZTxt[9].Trim();
                     bazaDanych[i].OZU = wartosciZTxt[11].Trim();
                     bazaDanych[i].Klasa = wartosciZTxt[13].Trim();
@@ -645,38 +684,7 @@ namespace WZDE
 
         }
 
-     static string dopisanieDo4MiejscPoPrzec(string liczba)
-        {
-            int indexPrzecinka = 0;
-            int ostatniIndex = 0;
-            char[] tabl;
-            Console.WriteLine(liczba + "  ");
-            liczba = liczba.ToString();
-            indexPrzecinka = liczba.LastIndexOf(",");
-             tabl = liczba.ToCharArray();
-             ostatniIndex = liczba.Length - 1;
-
-
-            if (ostatniIndex < 0)
-            {
-                liczba = "0,0000";
-            }
-            else
-            if (indexPrzecinka < 1)
-            {
-                liczba += ",0000";
-            }
-            else
-            {
-                for (int i = 0; i < ostatniIndex - indexPrzecinka; i++)
-                {
-                    liczba += "0";
-                }
-            }
-            Console.WriteLine(liczba + "  ");
-            return liczba;
-        }
-    
+   
 
 
         public static string generowanieRejestruPoKW(BazaDanych[] baza, BazaDanych[] bazaDanychPoScal, int indexOstatniegoElem, ref StringBuilder sb)
@@ -699,7 +707,7 @@ namespace WZDE
 
                     if (lastIndexPrawaStrone == 0)
                     {
-                        string txtTMP = WczytaneTekstowki.PdzialkaKW.Replace(ZnakiZastepcze.powDzialkiN, dopisanieDo4MiejscPoPrzec(bazaPoscalWyszukana[0].PowierzchniaDzialki));
+                        string txtTMP = WczytaneTekstowki.PdzialkaKW.Replace(ZnakiZastepcze.powDzialkiN, (bazaPoscalWyszukana[0].PowierzchniaDzialki));
                         txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzNowy, bazaPoscalWyszukana[0].Dzialka);
                         txtTMP = txtTMP.Replace(ZnakiZastepcze.KWn, bazaPoscalWyszukana[0].KW);
                         txtTMP = txtTMP.Replace(ZnakiZastepcze.jednRejesrtNowa, bazaPoscalWyszukana[0].NrJedn);
@@ -719,7 +727,7 @@ namespace WZDE
                         if (i == lastIndexPrawaStrone)
                         {
 
-                            string txtTMP = WczytaneTekstowki.PdzialkaKW.Replace(ZnakiZastepcze.powDzialkiN, dopisanieDo4MiejscPoPrzec(bazaPoscalWyszukana[lastIndexPrawaStrone].PowierzchniaDzialki));
+                            string txtTMP = WczytaneTekstowki.PdzialkaKW.Replace(ZnakiZastepcze.powDzialkiN, (bazaPoscalWyszukana[lastIndexPrawaStrone].PowierzchniaDzialki));
                             txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzNowy, bazaPoscalWyszukana[lastIndexPrawaStrone].Dzialka);
                             txtTMP = txtTMP.Replace(ZnakiZastepcze.KWn, bazaPoscalWyszukana[lastIndexPrawaStrone].KW);
                             txtTMP = txtTMP.Replace(ZnakiZastepcze.jednRejesrtNowa, bazaPoscalWyszukana[lastIndexPrawaStrone].NrJedn);
@@ -738,7 +746,7 @@ namespace WZDE
                         {
                             if (!bazaPoscalWyszukana[i + 1].Dzialka.Equals(bazaPoscalWyszukana[i].Dzialka))
                             {
-                                string txtTMP = WczytaneTekstowki.PdzialkaKW.Replace(ZnakiZastepcze.powDzialkiN, dopisanieDo4MiejscPoPrzec(bazaPoscalWyszukana[i].PowierzchniaDzialki));
+                                string txtTMP = WczytaneTekstowki.PdzialkaKW.Replace(ZnakiZastepcze.powDzialkiN, (bazaPoscalWyszukana[i].PowierzchniaDzialki));
                                 txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzNowy, bazaPoscalWyszukana[i].Dzialka);
                                 txtTMP = txtTMP.Replace(ZnakiZastepcze.KWn, bazaPoscalWyszukana[i].KW);
                                 txtTMP = txtTMP.Replace(ZnakiZastepcze.jednRejesrtNowa, bazaPoscalWyszukana[i].NrJedn);
