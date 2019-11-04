@@ -90,6 +90,24 @@ namespace WZDE.Properties {
         ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
         ///  border-left:solid windowtext  [obcięto pozostałą część ciągu]&quot;;.
         /// </summary>
+        internal static string LdzialkaJednRejBezKW {
+            get {
+                return ResourceManager.GetString("LdzialkaJednRejBezKW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;tr&gt;
+        ///   &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+        ///  normal;text-align:center;text-autospace:none&apos;&gt;&lt;span style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;
+        ///  color:black&apos;&gt;&amp;lt;JrS&amp;gt;&lt;/span&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext  [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
         internal static string LdzialkaKW {
             get {
                 return ResourceManager.GetString("LdzialkaKW", resourceCulture);
@@ -111,6 +129,24 @@ namespace WZDE.Properties {
         internal static string Lpusty {
             get {
                 return ResourceManager.GetString("Lpusty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;tr&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+        ///  normal;text-autospace:none&apos;&gt;&lt;span style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;
+        ///  color:black&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string LpustyJednRejBezKW {
+            get {
+                return ResourceManager.GetString("LpustyJednRejBezKW", resourceCulture);
             }
         }
         
@@ -162,6 +198,24 @@ namespace WZDE.Properties {
         ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
         ///  border-left:solid windowtext 1.0pt;border-bottom:none;bord [obcięto pozostałą część ciągu]&quot;;.
         /// </summary>
+        internal static string LuzytekJednRejBezKW {
+            get {
+                return ResourceManager.GetString("LuzytekJednRejBezKW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu  &lt;tr&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+        ///  normal;text-autospace:none&apos;&gt;&lt;span style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;
+        ///  color:black&apos;&gt;&lt;/span&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;bord [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
         internal static string LuzytekKW {
             get {
                 return ResourceManager.GetString("LuzytekKW", resourceCulture);
@@ -183,6 +237,24 @@ namespace WZDE.Properties {
         internal static string Pdzialka {
             get {
                 return ResourceManager.GetString("Pdzialka", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu 
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal align=center style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;
+        ///  text-align:center;line-height:normal;text-autospace:none&apos;&gt;&lt;b&gt;&lt;span
+        ///  style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;color:black&apos;&gt;&amp;lt;nDZ&amp;gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:sol [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string PdzialkaJednRejBezKW {
+            get {
+                return ResourceManager.GetString("PdzialkaJednRejBezKW", resourceCulture);
             }
         }
         
@@ -232,6 +304,23 @@ namespace WZDE.Properties {
         ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
         ///  border-left:solid windowtext 1 [obcięto pozostałą część ciągu]&quot;;.
         /// </summary>
+        internal static string PpustyJednRejBezKW {
+            get {
+                return ResourceManager.GetString("PpustyJednRejBezKW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal align=center style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;
+        ///  text-align:center;line-height:normal;text-autospace:none&apos;&gt;&lt;b&gt;&lt;span
+        ///  style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;color:black&apos;&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1 [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
         internal static string PpustyKW {
             get {
                 return ResourceManager.GetString("PpustyKW", resourceCulture);
@@ -253,6 +342,24 @@ namespace WZDE.Properties {
         internal static string Puzytek {
             get {
                 return ResourceManager.GetString("Puzytek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu 
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+        ///  padding:0cm 0cm 0cm 0cm&apos;&gt;
+        ///  &lt;p class=MsoNormal style=&apos;margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+        ///  normal;text-autospace:none&apos;&gt;&lt;span style=&apos;font-size:9.0pt;font-family:&quot;Arial Narrow&quot;,&quot;sans-serif&quot;;
+        ///  color:black&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;
+        ///  &lt;/td&gt;
+        ///  &lt;td valign=top style=&apos;border-top:solid windowtext 1.0pt;
+        ///  border-left:solid windowtext 1.0pt;border-bottom:none;bor [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string PuzytekJednRejBezKW {
+            get {
+                return ResourceManager.GetString("PuzytekJednRejBezKW", resourceCulture);
             }
         }
         
@@ -329,6 +436,35 @@ namespace WZDE.Properties {
         internal static string SZABLON_org_ {
             get {
                 return ResourceManager.GetString("SZABLON_org_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;html&gt;
+        ///
+        ///&lt;head&gt;
+        ///&lt;meta http-equiv=Content-Type content=&quot;text/html; charset=utf8&quot;&gt;
+        ///&lt;meta name=Generator content=&quot;Microsoft Word 12 (filtered)&quot;&gt;
+        ///&lt;style&gt;
+        ///&lt;!--
+        /// /* Font Definitions */
+        /// @font-face
+        ///	{font-family:&quot;Cambria Math&quot;;
+        ///	panose-1:2 4 5 3 5 4 6 3 2 4;}
+        ///@font-face
+        ///	{font-family:Calibri;
+        ///	panose-1:2 15 5 2 2 2 4 3 2 4;}
+        ///@font-face
+        ///	{font-family:&quot;Arial Narrow&quot;;
+        ///	panose-1:2 11 6 6 2 2 2 3 2 4;}
+        ///@font-face
+        ///	{font-family:&quot;FL Pismo Techniczne&quot;;
+        ///	panose-1:0 0 0 0 0 0 0 0 0 0;}
+        /// /* Style Definitio [obcięto pozostałą część ciągu]&quot;;.
+        /// </summary>
+        internal static string SZABLONJednRejBezKW {
+            get {
+                return ResourceManager.GetString("SZABLONJednRejBezKW", resourceCulture);
             }
         }
         

@@ -121,11 +121,17 @@
   <data name="Ldzialka" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Ldzialka.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
+  <data name="LdzialkaJednRejBezKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\LdzialkaJednRejBezKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
+  </data>
   <data name="LdzialkaKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\LdzialkaKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
   <data name="Lpusty" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Lpusty.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
+  </data>
+  <data name="LpustyJednRejBezKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\LpustyJednRejBezKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
   <data name="LpustyKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\LpustyKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
@@ -133,11 +139,17 @@
   <data name="Luzytek" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Luzytek.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
+  <data name="LuzytekJednRejBezKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\LuzytekJednRejBezKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
+  </data>
   <data name="LuzytekKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\LuzytekKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
   <data name="Pdzialka" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Pdzialka.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
+  </data>
+  <data name="PdzialkaJednRejBezKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PdzialkaJednRejBezKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
   <data name="PdzialkaKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\PdzialkaKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
@@ -145,17 +157,26 @@
   <data name="Ppusty" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Ppusty.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
+  <data name="PpustyJednRejBezKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PpustyJednRejBezKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
+  </data>
   <data name="PpustyKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\PpustyKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
   <data name="Puzytek" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Puzytek.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
+  <data name="PuzytekJednRejBezKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PuzytekJednRejBezKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
+  </data>
   <data name="PuzytekKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\PuzytekKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
   <data name="SZABLON" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\SZABLON.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="SZABLONJednRejBezKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\SZABLONJednRejBezKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="SZABLONKW" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\SZABLONKW.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>

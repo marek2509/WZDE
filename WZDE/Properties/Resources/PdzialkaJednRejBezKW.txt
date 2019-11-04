@@ -1,0 +1,36 @@
+
+  <td valign=top style='border-top:solid windowtext 1.0pt;
+  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+  padding:0cm 0cm 0cm 0cm'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal;text-autospace:none'><b><span
+  style='font-size:9.0pt;font-family:"Arial Narrow","sans-serif";color:black'>&lt;nDZ&gt;</span></b></p>
+  </td>
+  <td valign=top style='border-top:solid windowtext 1.0pt;
+  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+  padding:0cm 0cm 0cm 0cm'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal;text-autospace:none'><b><span
+  style='font-size:9.0pt;font-family:"Arial Narrow","sans-serif";color:black'>&lt;pDZn&gt;</span></b></p>
+  </td>
+  <td colspan=3 valign=top style='border-top:solid windowtext 1.0pt;
+  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+  padding:0cm 0cm 0cm 0cm'>
+  <p class=MsoNormal align=right style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:right;line-height:normal;text-autospace:none'><b><span
+  style='font-size:9.0pt;font-family:"Arial Narrow","sans-serif";color:black'>Razem:</span></b></p>
+  </td>
+  <td valign=top style='border-top:solid windowtext 1.0pt;
+  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+  padding:0cm 0cm 0cm 0cm'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal;text-autospace:none'><b><span
+  style='font-size:9.0pt;font-family:"Arial Narrow","sans-serif";color:black'>&lt;pDZn&gt;</span></b></p>
+  </td>
+  <td valign=top style='border:solid windowtext 1.0pt;
+  border-bottom:none;padding:0cm 0cm 0cm 0cm'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+  normal;text-align:center;text-autospace:none'><span style='font-size:9.0pt;font-family:"Arial Narrow","sans-serif";
+  color:black'>&lt;JrSnowa&gt;</span></p>
+  </td>
+ </tr>

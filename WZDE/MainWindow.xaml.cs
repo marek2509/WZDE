@@ -25,6 +25,7 @@ namespace WZDE
                 textBoxNrDecyzji.Text = Properties.Settings.Default.nrDecyzjiStarosty;
                 textBoxMiejsceStarosty.Text = Properties.Settings.Default.MiejsceStarosty;
                 textBoxdecyzjaZdnia.Text = Properties.Settings.Default.decyzjaZdnia;
+
             }
             catch (Exception e)
             {
@@ -143,17 +144,14 @@ namespace WZDE
                 {
                     if (radioButtonPoJednostkach.IsChecked == true)
                     {
-
                         for (int i = 0; i < bazaDanych.Count(); i++)
                         {
                             bazaTmp[licznikNowejBazy] = bazaDanych[i];
 
                             if ((i < bazaDanych.Count() - 1) && (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn)))
                             {
-
                                 // Console.WriteLine("       if (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn))");
                                 bazaTmp[++licznikNowejBazy] = bazaDanych[i];
-
                             }
                             else
                             {
@@ -164,7 +162,6 @@ namespace WZDE
 
                                     try
                                     {
-
                                         try
                                         {
                                             sw.WriteLine(Plik.generowanieRejestruPoJednostce(bazaTmp, bazaDanychPos, licznikNowejBazy));
@@ -184,8 +181,8 @@ namespace WZDE
 
                         }
                     }
-                    else
-                    {
+                    else if(radioButtonPoKW.IsChecked == true)
+                    { 
                         //-----------------------------------------------------poczatek odczytu Po KW
                         StringBuilder stringBuilder = new StringBuilder();
                         // Console.WriteLine(" PO KW ");
@@ -213,6 +210,79 @@ namespace WZDE
                                         try
                                         {
                                             sw.WriteLine(Plik.generowanieRejestruPoKW(bazaTmp, bazaDanychPos, licznikNowejBazy, ref stringBuilder));
+                                            licznikNowejBazy = 0;
+                                            sw.Close();
+                                        }
+                                        catch (Exception exc)
+                                        {
+                                            MessageBox.Show(exc + "  problem z plikiem");
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(ex.ToString());
+                                    }
+
+                            }
+
+                        }
+
+                        textBoxBledy.Text += stringBuilder.ToString();
+                        //-------------------------------------------------------koniec
+
+
+                    }
+
+                    else if (radioButtonPoJednostkachBezKW.IsChecked == true)
+                    {
+                        //-----------------------------------------------------poczatek odczytu Po KW
+                        StringBuilder stringBuilder = new StringBuilder();
+                        // Console.WriteLine(" PO KW ");
+                        for (int i = 0; i < bazaDanych.Count(); i++)
+                        {
+                            bazaTmp[licznikNowejBazy] = bazaDanych[i];
+
+                            if ((i < bazaDanych.Count() - 1) && (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn)))
+                            {
+                                bazaTmp[++licznikNowejBazy] = bazaDanych[i];
+                            }
+                            else
+                            {
+                                /*            else
+                            {
+                                Console.WriteLine("else");
+
+                                using (Stream s = File.Open(svd.FileName + bazaTmp[0].NrJedn + ".doc", FileMode.Create))
+                                using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
+
+                                    try
+                                    {
+                                        try
+                                        {
+                                            sw.WriteLine(Plik.generowanieRejestruPoJednostce(bazaTmp, bazaDanychPos, licznikNowejBazy));
+                                            licznikNowejBazy = 0;
+                                            sw.Close();
+                                        }
+                                        catch (Exception exc)
+                                        {
+                                            MessageBox.Show(exc.ToString() + "  problem z plikiem");
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(ex.ToString());
+                                    }
+                            }*/
+                                // Console.WriteLine("else");
+                                string nazwaPliku = bazaTmp[0].NrJedn;
+                                using (Stream s = File.Open(svd.FileName + nazwaPliku + ".doc", FileMode.Create))
+                                using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
+
+                                    try
+                                    {
+                                        try
+                                        {
+                                            sw.WriteLine(Plik.generowanieRejestruPoJednostceBezKW(bazaTmp, bazaDanychPos, licznikNowejBazy));
                                             licznikNowejBazy = 0;
                                             sw.Close();
                                         }
@@ -348,16 +418,16 @@ namespace WZDE
             zapisUstawienDomyslnych();
         }
 
-        private void RadioButtonPoJednostkach_Checked(object sender, RoutedEventArgs e)
-        {
-            radioButtonPoJednostkach.IsChecked = true;
-            radioButtonPoKW.IsChecked = false;
-        }
+        //private void RadioButtonPoJednostkach_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    radioButtonPoJednostkach.IsChecked = true;
+        //    radioButtonPoKW.IsChecked = false;
+        //}
 
-        private void RadioButtonPoKW_Checked(object sender, RoutedEventArgs e)
-        {
-            radioButtonPoJednostkach.IsChecked = false;
-            radioButtonPoKW.IsChecked = true;
-        }
+        //private void RadioButtonPoKW_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    radioButtonPoJednostkach.IsChecked = false;
+        //    radioButtonPoKW.IsChecked = true;
+        //}
     }
 }

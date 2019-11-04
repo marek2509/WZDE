@@ -195,5 +195,26 @@
   <ItemGroup>
     <None Include="Properties\Resources\SZABLONKW.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\LdzialkaJednRejBezKW.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\LpustyJednRejBezKW.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\LuzytekJednRejBezKW.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\PdzialkaJednRejBezKW.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\PpustyJednRejBezKW.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\PuzytekJednRejBezKW.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\SZABLONJednRejBezKW.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

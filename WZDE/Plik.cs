@@ -348,6 +348,24 @@ namespace WZDE
 
         }
 
+        public static int iloscWyszukanychDzialekWTablicy(BazaDanych[] bazaDanychPoScaleniu, string wyszukiwanaDzialka) //po jednostce
+        {
+
+            if (bazaDanychPoScaleniu != null)
+            {
+                int iloscElemWyszukanych = 0;
+                foreach (var item in bazaDanychPoScaleniu)
+                {
+                    if (item.Dzialka.Equals(wyszukiwanaDzialka)) iloscElemWyszukanych++;
+                }
+
+                return iloscElemWyszukanych;
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
         public static string generowanieRejestruPoJednostce(BazaDanych[] baza, BazaDanych[] bazaDanychPoScal, int indexOstatniegoElem)
         {
@@ -686,7 +704,7 @@ namespace WZDE
 
         }
 
-   
+
 
 
         public static string generowanieRejestruPoKW(BazaDanych[] baza, BazaDanych[] bazaDanychPoScal, int indexOstatniegoElem, ref StringBuilder sb)
@@ -719,7 +737,7 @@ namespace WZDE
 
                         txtTMP = WczytaneTekstowki.PuzytekKW.Replace(ZnakiZastepcze.OZUN, bazaPoscalWyszukana[0].OZU);
                         txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUN, bazaPoscalWyszukana[0].OFU);
-                        txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy,bazaPoscalWyszukana[0].PowierzchniaUzytku);
+                        txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[0].PowierzchniaUzytku);
                         txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[0].Klasa);
 
                         listaPrawejTaabeli.Add(txtTMP);
@@ -738,7 +756,7 @@ namespace WZDE
 
                             txtTMP = WczytaneTekstowki.PuzytekKW.Replace(ZnakiZastepcze.OZUN, bazaPoscalWyszukana[lastIndexPrawaStrone].OZU);
                             txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUN, bazaPoscalWyszukana[lastIndexPrawaStrone].OFU);
-                            txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy,bazaPoscalWyszukana[lastIndexPrawaStrone].PowierzchniaUzytku);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[lastIndexPrawaStrone].PowierzchniaUzytku);
                             txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[lastIndexPrawaStrone].Klasa);
                             listaPrawejTaabeli.Add(txtTMP);
 
@@ -756,7 +774,7 @@ namespace WZDE
 
                                 txtTMP = WczytaneTekstowki.PuzytekKW.Replace(ZnakiZastepcze.OZUN, bazaPoscalWyszukana[i].OZU);
                                 txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUN, bazaPoscalWyszukana[i].OFU);
-                                txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy,bazaPoscalWyszukana[i].PowierzchniaUzytku);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[i].PowierzchniaUzytku);
                                 txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[i].Klasa);
                                 listaPrawejTaabeli.Add(txtTMP);
 
@@ -766,7 +784,7 @@ namespace WZDE
                             {
                                 string txtTMP = WczytaneTekstowki.PuzytekKW.Replace(ZnakiZastepcze.OZUN, bazaPoscalWyszukana[i].OZU);
                                 txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUN, bazaPoscalWyszukana[i].OFU);
-                                txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy,bazaPoscalWyszukana[i].PowierzchniaUzytku);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[i].PowierzchniaUzytku);
                                 txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[i].Klasa);
                                 listaPrawejTaabeli.Add(txtTMP);
                             }
@@ -820,7 +838,7 @@ namespace WZDE
 
                     txtTMP = WczytaneTekstowki.LuzytekKW.Replace(ZnakiZastepcze.OZUS, baza[0].OZU);
                     txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUS, baza[0].OFU);
-                    txtTMP = txtTMP.Replace(ZnakiZastepcze.powUzytkS,baza[0].PowierzchniaUzytku);
+                    txtTMP = txtTMP.Replace(ZnakiZastepcze.powUzytkS, baza[0].PowierzchniaUzytku);
                     txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaS, baza[0].Klasa);
 
                     listaLewejTaabeli.Add(txtTMP);
@@ -971,6 +989,570 @@ namespace WZDE
 
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, (oblPowJednoskiPoUzytku(bazaPoscalWyszukana)));
                 //  dokHTML = dokHTML.Replace(ZnakiZastepcze.jednRejesrtNowa, bazaPoscalWyszukana[0].NrJedn);
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, bazaPoscalWyszukana[0].Podmiot);
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
+
+            }
+            else
+            {
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, "");
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.jednRejesrtNowa, "");
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, "");
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, "");
+            }
+
+            return dokHTML;
+        }
+
+
+
+        public static string generowanieRejestruPoJednostceBezKW(BazaDanych[] baza, BazaDanych[] bazaDanychPoScal, int indexOstatniegoElem)
+        {
+            BazaDanych[] bazaPoscalWyszukana = wyszukanieBazyPoScaleniu(bazaDanychPoScal, baza[0].NrJedn);
+            BazaDanych[] bazaPRZEDWyszukana = new BazaDanych[indexOstatniegoElem + 1];
+            for (int i = 0; i <= indexOstatniegoElem; i++)
+            {
+                bazaPRZEDWyszukana[i] = baza[i];
+            }
+
+
+            // Console.WriteLine( "BAZA PO SCAL WYSZUKANA COUNT " +      bazaPoscalWyszukana.Count());
+            List<string> listaLewejTaabeli = new List<string>();
+            List<string> listaPrawejTaabeli = new List<string>();
+
+
+            int lastIndexPrawaStrone = bazaPoscalWyszukana.Count() - 1;
+            if (bazaPoscalWyszukana.Count() > 0)
+                for (int i = lastIndexPrawaStrone; i >= 0; i--) // utworzenie prawej części tabeli 
+                {
+
+                    if (lastIndexPrawaStrone == 0)
+                    {
+
+                        //-----------------------------------------
+
+
+                        try
+                        {
+
+                            int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, bazaPoscalWyszukana[i].Dzialka);
+                            int ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, bazaPoscalWyszukana[i].Dzialka);
+
+                            if (ileUzytkowPO < ileUzytkowPrzed)
+                            {
+                                // listaLewejTaabeli.Reverse();
+                                for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
+                                {
+                                    listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
+                                    Console.WriteLine("PRAWA LISTA last index 0 ");
+                                }
+                                //listaLewejTaabeli.Reverse();
+                            }
+                        }
+                        catch (Exception a)
+                        {
+                            Console.WriteLine(a);
+                        }
+
+                        //-------------------------------------------------
+                        string txtTMP = WczytaneTekstowki.PdzialkaJednRejBezKW.Replace(ZnakiZastepcze.powDzialkiN, bazaPoscalWyszukana[0].PowierzchniaDzialki);
+                        txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzNowy, bazaPoscalWyszukana[0].Dzialka);
+                        txtTMP = txtTMP.Replace(ZnakiZastepcze.KWn, bazaPoscalWyszukana[0].KW);
+
+                        listaPrawejTaabeli.Add(txtTMP);
+
+
+                        txtTMP = WczytaneTekstowki.PuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUN, bazaPoscalWyszukana[0].OZU);
+                        txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUN, bazaPoscalWyszukana[0].OFU);
+                        txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[0].PowierzchniaUzytku);
+                        txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[0].Klasa);
+
+                        listaPrawejTaabeli.Add(txtTMP);
+
+
+
+                    }
+                    else
+                    {
+                        if (i == lastIndexPrawaStrone)
+                        {
+
+                            string txtTMP = WczytaneTekstowki.PdzialkaJednRejBezKW.Replace(ZnakiZastepcze.powDzialkiN, bazaPoscalWyszukana[lastIndexPrawaStrone].PowierzchniaDzialki);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzNowy, bazaPoscalWyszukana[lastIndexPrawaStrone].Dzialka);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.KWn, bazaPoscalWyszukana[lastIndexPrawaStrone].KW);
+
+                            listaPrawejTaabeli.Add(txtTMP);
+
+
+                            txtTMP = WczytaneTekstowki.PuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUN, bazaPoscalWyszukana[lastIndexPrawaStrone].OZU);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUN, bazaPoscalWyszukana[lastIndexPrawaStrone].OFU);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[lastIndexPrawaStrone].PowierzchniaUzytku);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[lastIndexPrawaStrone].Klasa);
+                            listaPrawejTaabeli.Add(txtTMP);
+                            //------------------------------------------@@@@@@@@@@@@@@
+                            if ((bazaPoscalWyszukana.Count() > 1))
+                            {
+                                if (!bazaPoscalWyszukana[i - 1].Dzialka.Equals(bazaPoscalWyszukana[i].Dzialka))
+                                {
+
+
+                                    //--------------------------------
+
+                                    try
+                                    {
+                                        int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, bazaPoscalWyszukana[i].Dzialka);
+                                        int ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, bazaPoscalWyszukana[i].Dzialka);
+
+                                        if (ileUzytkowPO < ileUzytkowPrzed)
+                                        {
+                                            // listaLewejTaabeli.Reverse();
+                                            for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
+                                            {
+                                                listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
+                                                Console.WriteLine("PRAWA LISTA last index 0 i == index ");
+                                            }
+                                            //listaLewejTaabeli.Reverse();
+                                        }
+                                    }
+                                    catch (Exception a)
+                                    {
+                                        Console.WriteLine(a);
+                                    }
+                                }
+                            }
+                            //--------------------------------*/
+                        }
+                        else if (i > 0)
+                        {
+                            if (!bazaPoscalWyszukana[i + 1].Dzialka.Equals(bazaPoscalWyszukana[i].Dzialka))
+                            {
+
+
+
+                                string txtTMP = WczytaneTekstowki.PdzialkaJednRejBezKW.Replace(ZnakiZastepcze.powDzialkiN, bazaPoscalWyszukana[i].PowierzchniaDzialki);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzNowy, bazaPoscalWyszukana[i].Dzialka);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.KWn, bazaPoscalWyszukana[i].KW);
+                                listaPrawejTaabeli.Add(txtTMP);
+
+                                txtTMP = WczytaneTekstowki.PuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUN, bazaPoscalWyszukana[i].OZU);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUN, bazaPoscalWyszukana[i].OFU);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[i].PowierzchniaUzytku);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[i].Klasa);
+                                listaPrawejTaabeli.Add(txtTMP);
+                                
+
+                            }
+                            else
+                            {
+
+                               
+
+                                string txtTMP = WczytaneTekstowki.PuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUN, bazaPoscalWyszukana[i].OZU);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUN, bazaPoscalWyszukana[i].OFU);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[i].PowierzchniaUzytku);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[i].Klasa);
+                                listaPrawejTaabeli.Add(txtTMP);
+
+                                //************ PO *********************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+                                if (!bazaPoscalWyszukana[i - 1].Dzialka.Equals(bazaPoscalWyszukana[i].Dzialka))
+                                {
+                                    try
+                                    {
+                                        int ileUzytkowPrzed = 0;
+                                        int ileUzytkowPO = 0;
+                                         ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, bazaPoscalWyszukana[i].Dzialka);
+                                         ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, bazaPoscalWyszukana[i].Dzialka);
+
+                                        if (ileUzytkowPO < ileUzytkowPrzed)
+                                        {
+                                            // listaLewejTaabeli.Reverse();
+                                            for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
+                                            {
+
+                                                Console.WriteLine("PRAWA LISTA > 0 esle");
+                                                listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
+                                            }
+                                            //listaLewejTaabeli.Reverse();
+                                        }
+                                    }
+                                    catch (Exception)
+                                    {
+
+                                        Console.WriteLine("STAN PRZED: lipa z porownaniem działek do wstawienia pustej lini w rejestrze (Najprawdopodobniej inna liczba uzytkow)");
+                                    }
+
+                                }
+                                //*********************************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+                            }
+                        }
+                        else if (i == 0)
+                        {
+                            if (!bazaPoscalWyszukana[0].Dzialka.Equals(bazaPoscalWyszukana[1].Dzialka))
+                            {
+                                string txtTMP = WczytaneTekstowki.PdzialkaJednRejBezKW.Replace(ZnakiZastepcze.powDzialkiN, bazaPoscalWyszukana[i].PowierzchniaDzialki);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzNowy, bazaPoscalWyszukana[i].Dzialka);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.KWn, bazaPoscalWyszukana[i].KW);
+                                listaPrawejTaabeli.Add(txtTMP);
+
+                                txtTMP = WczytaneTekstowki.PuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUN, bazaPoscalWyszukana[i].OZU);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUN, bazaPoscalWyszukana[i].OFU);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[i].PowierzchniaUzytku);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[i].Klasa);
+                                listaPrawejTaabeli.Add(txtTMP);
+                            }
+                            else
+                            {
+                                string txtTMP = WczytaneTekstowki.PuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUN, bazaPoscalWyszukana[i].OZU);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUN, bazaPoscalWyszukana[i].OFU);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[i].PowierzchniaUzytku);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[i].Klasa);
+                                listaPrawejTaabeli.Add(txtTMP);
+
+                                       
+
+                            }
+                            //--------------------------------
+
+                            try
+                            {
+                                int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, bazaPoscalWyszukana[i].Dzialka);
+                                int ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, bazaPoscalWyszukana[i].Dzialka);
+
+                                if (ileUzytkowPO < ileUzytkowPrzed)
+                                {
+                                    // listaLewejTaabeli.Reverse();
+                                    for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
+                                    {
+                                        Console.WriteLine("PRAWA LISTA last index = 0  else");
+                                        listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
+                                    }
+                                    //listaLewejTaabeli.Reverse();
+                                }
+                            }
+                            catch (Exception a)
+                            {
+                                Console.WriteLine(a);
+                            }
+                            //-----------------------------
+                        }
+
+                    }
+                }
+
+
+
+
+
+            // LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA
+            //LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA
+            //LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA
+
+            for (int i = indexOstatniegoElem; i >= 0; i--) // utworzenie lewej części tabeli 
+            {
+
+                Console.WriteLine("i gen " + i);
+
+
+                if (indexOstatniegoElem == 0)
+                {
+
+                    //-----------------------------------------
+
+
+                    try
+                    {
+                        int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, baza[0].Dzialka);
+                        int ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, baza[0].Dzialka);
+
+                        if (ileUzytkowPO > ileUzytkowPrzed)
+                        {
+                            // listaLewejTaabeli.Reverse();
+                            for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
+                            {
+                                listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
+                                Console.WriteLine("PRAWA LISTA last index 0 ");
+                            }
+                            //listaLewejTaabeli.Reverse();
+                        }
+                    }
+
+                    catch (Exception a)
+                    {
+                        Console.WriteLine(a);
+                    }
+
+                    //-------------------------------------------------
+
+                    string txtTMP = WczytaneTekstowki.LdzialkaJednRejBezKW.Replace(ZnakiZastepcze.PowDzialkiS, baza[0].PowierzchniaDzialki);
+                    txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzialkiS, baza[0].Dzialka);
+                    txtTMP = txtTMP.Replace(ZnakiZastepcze.KWs, baza[0].KW);
+
+                    listaLewejTaabeli.Add(txtTMP);
+
+
+                    txtTMP = WczytaneTekstowki.LuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUS, baza[0].OZU);
+                    txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUS, baza[0].OFU);
+                    txtTMP = txtTMP.Replace(ZnakiZastepcze.powUzytkS, baza[0].PowierzchniaUzytku);
+                    txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaS, baza[0].Klasa);
+
+                    listaLewejTaabeli.Add(txtTMP);
+
+
+                }
+                else
+                {
+                    if (i == indexOstatniegoElem)
+                    {
+
+                        string txtTMP = WczytaneTekstowki.LdzialkaJednRejBezKW.Replace(ZnakiZastepcze.PowDzialkiS, baza[indexOstatniegoElem].PowierzchniaDzialki);
+                        txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzialkiS, baza[indexOstatniegoElem].Dzialka);
+                        txtTMP = txtTMP.Replace(ZnakiZastepcze.KWs, baza[indexOstatniegoElem].KW);
+
+                        listaLewejTaabeli.Add(txtTMP);
+
+
+                        txtTMP = WczytaneTekstowki.LuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUS, baza[indexOstatniegoElem].OZU);
+                        txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUS, baza[indexOstatniegoElem].OFU);
+                        txtTMP = txtTMP.Replace(ZnakiZastepcze.powUzytkS, baza[indexOstatniegoElem].PowierzchniaUzytku);
+                        txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaS, baza[indexOstatniegoElem].Klasa);
+                        listaLewejTaabeli.Add(txtTMP);
+
+                        //************ PO *********************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+                        if (!baza[i - 1].Dzialka.Equals(baza[i].Dzialka))
+                        {
+                            try
+                            {
+                                int ileUzytkowPrzed = 0;
+                                int ileUzytkowPO = 0;
+                                ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, baza[i].Dzialka);
+                                ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, baza[i].Dzialka);
+
+                                if (ileUzytkowPO > ileUzytkowPrzed)
+                                {
+                                    // listaLewejTaabeli.Reverse();
+                                    for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
+                                    {
+
+                                        Console.WriteLine("LEWA LISTA > 0 esle");
+                                        listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
+                                    }
+                                    //listaLewejTaabeli.Reverse();
+                                }
+                            }
+                            catch (Exception)
+                            {
+
+                                Console.WriteLine("STAN PRZED: lipa z porownaniem działek do wstawienia pustej lini w rejestrze (Najprawdopodobniej inna liczba uzytkow)");
+                            }
+
+                        }
+                        //*********************************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+                    }
+                    else if (i > 0)
+                    {
+                        if (!baza[i + 1].Dzialka.Equals(baza[i].Dzialka))
+                        {
+
+                           
+
+                            string txtTMP = WczytaneTekstowki.LdzialkaJednRejBezKW.Replace(ZnakiZastepcze.PowDzialkiS, baza[i].PowierzchniaDzialki);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzialkiS, baza[i].Dzialka);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.KWs, baza[i].KW);
+                            listaLewejTaabeli.Add(txtTMP);
+
+
+
+                            txtTMP = WczytaneTekstowki.LuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUS, baza[i].OZU);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUS, baza[i].OFU);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.powUzytkS, baza[i].PowierzchniaUzytku);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaS, baza[i].Klasa);
+                            listaLewejTaabeli.Add(txtTMP);
+
+
+                        }
+                        else
+                        {
+                            string txtTMP = WczytaneTekstowki.LuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUS, baza[i].OZU);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUS, baza[i].OFU);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.powUzytkS, baza[i].PowierzchniaUzytku);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaS, baza[i].Klasa);
+                            listaLewejTaabeli.Add(txtTMP);
+
+
+                            //****** PRZED *****************************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+                            //************ PO *********************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+                            if (!baza[i - 1].Dzialka.Equals(baza[i].Dzialka))
+                            {
+                                try
+                                {
+                                    int ileUzytkowPrzed = 0;
+                                    int ileUzytkowPO = 0;
+                                    ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, baza[i].Dzialka);
+                                    ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, baza[i].Dzialka);
+
+                                    if (ileUzytkowPO > ileUzytkowPrzed)
+                                    {
+                                        // listaLewejTaabeli.Reverse();
+                                        for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
+                                        {
+
+                                            Console.WriteLine("LEWA LISTA > 0 esle");
+                                            listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
+                                        }
+                                        //listaLewejTaabeli.Reverse();
+                                    }
+                                }
+                                catch (Exception)
+                                {
+
+                                    Console.WriteLine("STAN PRZED: lipa z porownaniem działek do wstawienia pustej lini w rejestrze (Najprawdopodobniej inna liczba uzytkow)");
+                                }
+
+                            }
+                            //*********************************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+                            //*********************************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    
+                        }
+                    }
+                    else if (i == 0)
+                    {
+
+
+                        if (!baza[0].Dzialka.Equals(baza[1].Dzialka))
+                        {
+                            string txtTMP = WczytaneTekstowki.LdzialkaJednRejBezKW.Replace(ZnakiZastepcze.PowDzialkiS, baza[i].PowierzchniaDzialki);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzialkiS, baza[i].Dzialka);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.KWs, baza[i].KW);
+                            listaLewejTaabeli.Add(txtTMP);
+
+                            txtTMP = WczytaneTekstowki.LuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUS, baza[i].OZU);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUS, baza[i].OFU);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.powUzytkS, baza[i].PowierzchniaUzytku);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaS, baza[i].Klasa);
+                            listaLewejTaabeli.Add(txtTMP);
+                        }
+                        else
+                        {
+                            string txtTMP = WczytaneTekstowki.LuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUS, baza[i].OZU);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUS, baza[i].OFU);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.powUzytkS, baza[i].PowierzchniaUzytku);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaS, baza[i].Klasa);
+                            listaLewejTaabeli.Add(txtTMP);
+
+
+                        }
+
+                        //--------------------------------
+
+                        try
+                        {
+                            int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, baza[i].Dzialka);
+                            int ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, baza[i].Dzialka);
+
+                            if (ileUzytkowPO > ileUzytkowPrzed)
+                            {
+                                // listaLewejTaabeli.Reverse();
+                                for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
+                                {
+                                    Console.WriteLine("PRAWA LISTA last index = 0  else");
+                                    listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
+                                }
+                                //listaLewejTaabeli.Reverse();
+                            }
+                        }
+                        catch (Exception a)
+                        {
+                            Console.WriteLine(a);
+                        }
+                        //-----------------------------
+                    }
+
+                }
+
+            }
+            // wierszDZUZYTK += wierszUzTMP;
+
+
+            //  dokHTML = dokHTML.Replace(wierszUzytku, wierszUz);
+            // dokHTML = dokHTML.Replace(wierszDzialki, wierszDzi);
+
+            //    dokHTML = dokHTML.Replace(wierszDziUzy, wierszDZUZYTK);
+
+
+            string podmiankaTabela = "";
+            int wiekszy = 0;
+            if (listaPrawejTaabeli.Count > listaLewejTaabeli.Count)
+            {
+                wiekszy = listaPrawejTaabeli.Count;
+            }
+            else
+            {
+                wiekszy = listaLewejTaabeli.Count;
+            }
+
+            Console.WriteLine("qwerty lewa: " + listaLewejTaabeli.Count + "   prawa " + listaPrawejTaabeli.Count);
+
+
+            listaLewejTaabeli.Reverse();
+            listaPrawejTaabeli.Reverse();
+
+            for (int i = 0; i < wiekszy; i++)
+            {
+
+
+
+                //----------------------------
+
+                if (i < listaLewejTaabeli.Count)
+                {
+                    podmiankaTabela += listaLewejTaabeli[i];
+                }
+                else
+                {
+                    podmiankaTabela += WczytaneTekstowki.LpustyJednRejBezKW;
+                }
+
+                if (i < listaPrawejTaabeli.Count)
+                {
+                    podmiankaTabela += listaPrawejTaabeli[i];
+                }
+                else
+                {
+                    podmiankaTabela += WczytaneTekstowki.PpustyJednRejBezKW;
+                }
+
+            }
+
+
+            string dokHTML = WczytaneTekstowki.szablonJednRejBezKW;
+            dokHTML = dokHTML.Replace("bebechy", podmiankaTabela);
+            //   dokHTML = dokHTML.Replace(ZnakiZastepcze.Podmiot, baza[0].Podmion);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRs, oblPowJednoskiPoUzytku(baza, indexOstatniegoElem));
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.JednRejS, baza[0].NrJedn);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotS, baza[0].Podmiot);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(baza, indexOstatniegoElem)));
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.obrebEwidencyjny, Properties.Settings.Default.Obreb);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.gmina, Properties.Settings.Default.Gmina);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.IdZglPracGeodez, Properties.Settings.Default.IdZglPrac);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.KWn, baza[0].KW);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.starostaW, Properties.Settings.Default.MiejsceStarosty);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.nrDecyzji, Properties.Settings.Default.nrDecyzjiStarosty);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.decyzjaZdnia, Properties.Settings.Default.decyzjaZdnia);
+
+            if (bazaPoscalWyszukana.Count() > 0)
+            {
+
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, oblPowJednoskiPoUzytku(bazaPoscalWyszukana));
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.jednRejesrtNowa, bazaPoscalWyszukana[0].NrJedn);
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, bazaPoscalWyszukana[0].Podmiot);
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
 
