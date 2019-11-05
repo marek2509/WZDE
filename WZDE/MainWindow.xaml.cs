@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -181,8 +182,8 @@ namespace WZDE
 
                         }
                     }
-                    else if(radioButtonPoKW.IsChecked == true)
-                    { 
+                    else if (radioButtonPoKW.IsChecked == true)
+                    {
                         //-----------------------------------------------------poczatek odczytu Po KW
                         StringBuilder stringBuilder = new StringBuilder();
                         // Console.WriteLine(" PO KW ");
@@ -248,32 +249,7 @@ namespace WZDE
                             }
                             else
                             {
-                                /*            else
-                            {
-                                Console.WriteLine("else");
 
-                                using (Stream s = File.Open(svd.FileName + bazaTmp[0].NrJedn + ".doc", FileMode.Create))
-                                using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
-
-                                    try
-                                    {
-                                        try
-                                        {
-                                            sw.WriteLine(Plik.generowanieRejestruPoJednostce(bazaTmp, bazaDanychPos, licznikNowejBazy));
-                                            licznikNowejBazy = 0;
-                                            sw.Close();
-                                        }
-                                        catch (Exception exc)
-                                        {
-                                            MessageBox.Show(exc.ToString() + "  problem z plikiem");
-                                        }
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        MessageBox.Show(ex.ToString());
-                                    }
-                            }*/
-                                // Console.WriteLine("else");
                                 string nazwaPliku = bazaTmp[0].NrJedn;
                                 using (Stream s = File.Open(svd.FileName + nazwaPliku + ".doc", FileMode.Create))
                                 using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
@@ -282,6 +258,7 @@ namespace WZDE
                                     {
                                         try
                                         {
+
                                             sw.WriteLine(Plik.generowanieRejestruPoJednostceBezKW(bazaTmp, bazaDanychPos, licznikNowejBazy));
                                             licznikNowejBazy = 0;
                                             sw.Close();
@@ -305,10 +282,131 @@ namespace WZDE
 
 
                     }
+                    else if (radioButtonPoJednBezKWZUsunieciemNiezmienionychDzialek.IsChecked == true)
+                    {
+                        //-----------------------------------------------------poczatek odczytu Po KW
+                        StringBuilder stringBuilder = new StringBuilder();
+
+                        for (int i = 0; i < bazaDanych.Count(); i++)
+                        {
+                            bazaTmp[licznikNowejBazy] = bazaDanych[i];
+
+                            if ((i < bazaDanych.Count() - 1) && (bazaDanych[i + 1].NrJedn.Equals(bazaDanych[i].NrJedn)))
+                            {
+                                bazaTmp[++licznikNowejBazy] = bazaDanych[i];
+                            }
+                            else
+                            {
+                                Console.WriteLine("jestem przed tym1 ELSE");
+                                string nazwaPliku = bazaTmp[0].NrJedn;
+
+
+                                //-----------------------------------------------------------------------------------------------
+                                #region 
+
+                                List<string> dzialkiDoUsuniecia = new List<string>();
+                                BazaDanych[] bazaPRZEDWyszukana = new BazaDanych[licznikNowejBazy + 1];
+
+                                for (int k = 0; k <= licznikNowejBazy; k++)
+                                {
+                                    bazaPRZEDWyszukana[k] = bazaTmp[k];
+                                }
+
+
+                                BazaDanych[] bazaPoScalDoJednoski = Plik.wyszukanieBazyPoScaleniu(bazaDanychPos, bazaPRZEDWyszukana[0].NrJedn);
+                                Console.WriteLine("jestem przed tym1");
+
+                                for (int l = 0; l < bazaPRZEDWyszukana.Count(); l++)
+                                {
+                                    if (l == 0)
+                                    {
+                                        BazaDanych[] tymczasPO = Plik.wyszukanieBazyPoDziałkach(bazaPoScalDoJednoski, bazaPRZEDWyszukana[l].Dzialka);
+                                        BazaDanych[] tymczasPRZED = Plik.wyszukanieBazyPoDziałkach(bazaPRZEDWyszukana, bazaPRZEDWyszukana[l].Dzialka);
+
+
+
+                                        if (Plik.czyTakaSamaZawartosc(tymczasPRZED, tymczasPO))
+                                        {
+                                            dzialkiDoUsuniecia.Add(bazaPRZEDWyszukana[l].Dzialka);
+                                        }
+
+                                    }
+                                    else if (!bazaPRZEDWyszukana[l - 1].Dzialka.Equals(bazaPRZEDWyszukana[l].Dzialka))
+                                    {
+                                        BazaDanych[] tymczasPO = Plik.wyszukanieBazyPoDziałkach(bazaPoScalDoJednoski, bazaPRZEDWyszukana[l].Dzialka);
+                                        BazaDanych[] tymczasPRZED = Plik.wyszukanieBazyPoDziałkach(bazaPRZEDWyszukana, bazaPRZEDWyszukana[l].Dzialka);
+                                        if (Plik.czyTakaSamaZawartosc(tymczasPRZED, tymczasPO))
+                                        {
+                                            dzialkiDoUsuniecia.Add(bazaPRZEDWyszukana[l].Dzialka);
+                                        }
+                                    }
+                                }
+
+
+                               
+
+                                BazaDanych[] BdPRZED = Plik.usunDzialkiZListy(bazaPRZEDWyszukana, dzialkiDoUsuniecia);
+                                BazaDanych[] BdPO = Plik.usunDzialkiZListy(bazaPoScalDoJednoski, dzialkiDoUsuniecia);
+
+                             
+
+                                if (BdPO == null && BdPRZED == null)
+                                {
+                                    licznikNowejBazy = 0;
+                                    continue;
+                                }
+                                Console.WriteLine("-*-**--**-***-*-**-*-*-*-*--*-*-**--*-**-*--*--*-*-*-*-**-");
+                                foreach (var item in BdPRZED)
+                                {
+                                    Console.Write(item.NrJedn + "<>" + item.Dzialka + "   ");
+                                }
+                                foreach (var item in BdPO)
+                                {
+                                    Console.Write(item.NrJedn + "<>" + item.Dzialka + "   ");
+                                }
+                                //--------------------------------------------------------------------------------------------------
+
+
+
+
+                                using (Stream s = File.Open(svd.FileName + nazwaPliku + ".doc", FileMode.Create))
+                                using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
+                                   
+                                try
+                                    {
+
+                                        try
+                                        {
+
+                                          
+                                            Console.WriteLine(BdPRZED.Count() + " " + BdPO.Count() + "o zesz");
+                                            sw.WriteLine(Plik.generowanieRejestruPoJednostceBezKW(BdPRZED, BdPO, (BdPRZED.Count()-1)));
+                                            licznikNowejBazy = 0;
+                                            sw.Close();
+                                            #endregion
+                                        }
+                                        catch (Exception exc)
+                                        {
+                                            MessageBox.Show(exc + "  problem z plikiem");
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(ex.ToString());
+                                    }
+
+                            }
+
+                        }
+
+                        textBoxBledy.Text += stringBuilder.ToString();
+                        //-------------------------------------------------------koniec
+
+
+                    }
                 }
             }
         }
-
 
 
         private void OtworzStanPo(object sender, RoutedEventArgs e)

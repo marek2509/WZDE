@@ -345,8 +345,37 @@ namespace WZDE
                 return wyszukanaBaza;
             }
 
+        }
+
+        public static BazaDanych[] wyszukanieBazyPoDziałkach(BazaDanych[] bazaDanychPoScaleniu, string wyszukiwanaDzialka) // tworzy tablice obiektów po działkach
+        {
+
+            if (bazaDanychPoScaleniu != null)
+            {
+                int iloscElemWyszukanych = 0;
+                foreach (var item in bazaDanychPoScaleniu)
+                {
+                    if (item.Dzialka.Equals(wyszukiwanaDzialka)) iloscElemWyszukanych++;
+                }
+                BazaDanych[] wyszukanaBaza = new BazaDanych[iloscElemWyszukanych];
+
+                int iterator = 0;
+                foreach (var item in bazaDanychPoScaleniu)
+                {
+                    if (item.Dzialka.Equals(wyszukiwanaDzialka))
+
+                        wyszukanaBaza[iterator++] = item;
+                }
+                return wyszukanaBaza;
+            }
+            else
+            {
+                BazaDanych[] wyszukanaBaza = new BazaDanych[0];
+                return wyszukanaBaza;
+            }
 
         }
+
 
         public static int iloscWyszukanychDzialekWTablicy(BazaDanych[] bazaDanychPoScaleniu, string wyszukiwanaDzialka) //po jednostce
         {
@@ -366,6 +395,8 @@ namespace WZDE
                 return 0;
             }
         }
+
+
 
         public static string generowanieRejestruPoJednostce(BazaDanych[] baza, BazaDanych[] bazaDanychPoScal, int indexOstatniegoElem)
         {
@@ -486,7 +517,7 @@ namespace WZDE
             for (int i = indexOstatniegoElem; i >= 0; i--) // utworzenie lewej części tabeli 
             {
 
-                Console.WriteLine("i gen " + i);
+              //  Console.WriteLine("i gen " + i);
 
 
                 if (indexOstatniegoElem == 0)
@@ -1004,7 +1035,68 @@ namespace WZDE
             return dokHTML;
         }
 
+        public static BazaDanych[] usunDzialkiZListy(BazaDanych[] BazaDoUsunieciaDzialekZListy, List<string> listaDzialek)
+        {
+            List<BazaDanych> liscaDanych = new List<BazaDanych>();
+            BazaDanych[] bazaPoUsunieciuNiechcianych = null;
+            for (int i = 0; i < BazaDoUsunieciaDzialekZListy.Count(); i++)
+            {
+                bool czyZapisac = true;
+                foreach (var item in listaDzialek)
+                {
+                    if (item.Equals(BazaDoUsunieciaDzialekZListy[i].Dzialka))
+                    {
+                        czyZapisac = false;
+                    }
+                }
 
+                if (czyZapisac)
+                {
+                    liscaDanych.Add(BazaDoUsunieciaDzialekZListy[i]);
+
+                }
+            }
+
+            if (liscaDanych.Count() == 0) return bazaPoUsunieciuNiechcianych;
+
+            bazaPoUsunieciuNiechcianych = new BazaDanych[liscaDanych.Count()];
+            for (int i = 0; i < liscaDanych.Count(); i++)
+            {
+                bazaPoUsunieciuNiechcianych[i] = liscaDanych[i];
+            }
+
+            return bazaPoUsunieciuNiechcianych;
+        }
+
+        public static bool czyTakaSamaZawartosc(BazaDanych[] PRZED, BazaDanych[] PO)
+        {
+            bool czyTaSamaZaw = true;
+
+            if (PO.Count() == PRZED.Count())
+            {
+                for (int m = 0; m < PRZED.Count(); m++)
+                {
+                    if (!(PO[m].Dzialka.Equals(PRZED[m].Dzialka)
+                        && PO[m].Klasa.Equals(PRZED[m].Klasa)
+                        && PO[m].KW.Equals(PRZED[m].KW)
+                        && PO[m].NrJedn.Equals(PRZED[m].NrJedn)
+                        && PO[m].Obreb.Equals(PRZED[m].Obreb)
+                        && PO[m].OFU.Equals(PRZED[m].OFU)
+                        && PO[m].OZU.Equals(PRZED[m].OZU)
+                        && PO[m].Podmiot.Equals(PRZED[m].Podmiot)
+                        && PO[m].PowierzchniaDzialki.Equals(PRZED[m].PowierzchniaDzialki)
+                        && PO[m].PowierzchniaUzytku.Equals(PRZED[m].PowierzchniaUzytku)))
+                    {
+                        czyTaSamaZaw = false;
+                    }
+                }
+                return czyTaSamaZaw;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public static string generowanieRejestruPoJednostceBezKW(BazaDanych[] baza, BazaDanych[] bazaDanychPoScal, int indexOstatniegoElem)
         {
@@ -1016,7 +1108,7 @@ namespace WZDE
             }
 
 
-            // Console.WriteLine( "BAZA PO SCAL WYSZUKANA COUNT " +      bazaPoscalWyszukana.Count());
+            // w listach przechowywane będą linie html (podzielonie po 1/2 na lewa i prawa stronę) do wygenerowania raportów a następnie połączone
             List<string> listaLewejTaabeli = new List<string>();
             List<string> listaPrawejTaabeli = new List<string>();
 
@@ -1029,32 +1121,9 @@ namespace WZDE
                     if (lastIndexPrawaStrone == 0)
                     {
 
-                        //-----------------------------------------
 
 
-                        try
-                        {
 
-                            int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, bazaPoscalWyszukana[i].Dzialka);
-                            int ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, bazaPoscalWyszukana[i].Dzialka);
-
-                            if (ileUzytkowPO < ileUzytkowPrzed)
-                            {
-                                // listaLewejTaabeli.Reverse();
-                                for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
-                                {
-                                    listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
-                                    Console.WriteLine("PRAWA LISTA last index 0 ");
-                                }
-                                //listaLewejTaabeli.Reverse();
-                            }
-                        }
-                        catch (Exception a)
-                        {
-                            Console.WriteLine(a);
-                        }
-
-                        //-------------------------------------------------
                         string txtTMP = WczytaneTekstowki.PdzialkaJednRejBezKW.Replace(ZnakiZastepcze.powDzialkiN, bazaPoscalWyszukana[0].PowierzchniaDzialki);
                         txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzNowy, bazaPoscalWyszukana[0].Dzialka);
                         txtTMP = txtTMP.Replace(ZnakiZastepcze.KWn, bazaPoscalWyszukana[0].KW);
@@ -1068,7 +1137,29 @@ namespace WZDE
                         txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[0].Klasa);
 
                         listaPrawejTaabeli.Add(txtTMP);
+                        //--------sprawdza ile użytków jest w stanie przed i po i jeśli jest nie rowna liczba dodaje pusta linie aby ->
+                        //---------> linie działek były na tym samym poziomie
+                        try
+                        {
+                            int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, bazaPoscalWyszukana[i].Dzialka);
+                            int ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, bazaPoscalWyszukana[i].Dzialka);
 
+                            if (ileUzytkowPO < ileUzytkowPrzed)
+                            {
+                                // listaLewejTaabeli.Reverse();
+                                for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
+                                {
+                                    listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
+                                  //  Console.WriteLine("PRAWA LISTA last index 0 ");
+                                }
+                                //listaLewejTaabeli.Reverse();
+                            }
+                        }
+                        catch (Exception a)
+                        {
+                            Console.WriteLine(a);
+                        }
+                        //-------------------------------------------------
 
 
                     }
@@ -1089,29 +1180,25 @@ namespace WZDE
                             txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[lastIndexPrawaStrone].PowierzchniaUzytku);
                             txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[lastIndexPrawaStrone].Klasa);
                             listaPrawejTaabeli.Add(txtTMP);
-                            //------------------------------------------@@@@@@@@@@@@@@
+
+
+                            //-------   @@@@@@@@@@@@@@ dodawanie pustej lini w celu 
                             if ((bazaPoscalWyszukana.Count() > 1))
                             {
                                 if (!bazaPoscalWyszukana[i - 1].Dzialka.Equals(bazaPoscalWyszukana[i].Dzialka))
                                 {
-
-
-                                    //--------------------------------
-
                                     try
                                     {
                                         int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, bazaPoscalWyszukana[i].Dzialka);
                                         int ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, bazaPoscalWyszukana[i].Dzialka);
-
                                         if (ileUzytkowPO < ileUzytkowPrzed)
                                         {
                                             // listaLewejTaabeli.Reverse();
                                             for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
                                             {
                                                 listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
-                                                Console.WriteLine("PRAWA LISTA last index 0 i == index ");
+                                               // Console.WriteLine("PRAWA LISTA last index 0 i == index ");
                                             }
-                                            //listaLewejTaabeli.Reverse();
                                         }
                                     }
                                     catch (Exception a)
@@ -1120,7 +1207,10 @@ namespace WZDE
                                     }
                                 }
                             }
-                            //--------------------------------*/
+                            //------
+
+
+
                         }
                         else if (i > 0)
                         {
@@ -1139,31 +1229,15 @@ namespace WZDE
                                 txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[i].PowierzchniaUzytku);
                                 txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[i].Klasa);
                                 listaPrawejTaabeli.Add(txtTMP);
-                                
-
-                            }
-                            else
-                            {
-
-                               
-
-                                string txtTMP = WczytaneTekstowki.PuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUN, bazaPoscalWyszukana[i].OZU);
-                                txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUN, bazaPoscalWyszukana[i].OFU);
-                                txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[i].PowierzchniaUzytku);
-                                txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[i].Klasa);
-                                listaPrawejTaabeli.Add(txtTMP);
-
-                                //************ PO *********************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
+                                //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \/ 
                                 if (!bazaPoscalWyszukana[i - 1].Dzialka.Equals(bazaPoscalWyszukana[i].Dzialka))
                                 {
                                     try
                                     {
                                         int ileUzytkowPrzed = 0;
                                         int ileUzytkowPO = 0;
-                                         ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, bazaPoscalWyszukana[i].Dzialka);
-                                         ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, bazaPoscalWyszukana[i].Dzialka);
+                                        ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, bazaPoscalWyszukana[i].Dzialka);
+                                        ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, bazaPoscalWyszukana[i].Dzialka);
 
                                         if (ileUzytkowPO < ileUzytkowPrzed)
                                         {
@@ -1171,7 +1245,7 @@ namespace WZDE
                                             for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
                                             {
 
-                                                Console.WriteLine("PRAWA LISTA > 0 esle");
+                                            //    Console.WriteLine("PRAWA LISTA > 0 esle");
                                                 listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
                                             }
                                             //listaLewejTaabeli.Reverse();
@@ -1182,14 +1256,61 @@ namespace WZDE
 
                                         Console.WriteLine("STAN PRZED: lipa z porownaniem działek do wstawienia pustej lini w rejestrze (Najprawdopodobniej inna liczba uzytkow)");
                                     }
-
                                 }
-                                //*********************************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                                //***********************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ /\
+
+                            }
+                            else
+                            {
+
+
+
+                                string txtTMP = WczytaneTekstowki.PuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUN, bazaPoscalWyszukana[i].OZU);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUN, bazaPoscalWyszukana[i].OFU);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[i].PowierzchniaUzytku);
+                                txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[i].Klasa);
+                                listaPrawejTaabeli.Add(txtTMP);
+
+                                //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \/ 
+                                if (!bazaPoscalWyszukana[i - 1].Dzialka.Equals(bazaPoscalWyszukana[i].Dzialka))
+                                {
+                                    try
+                                    {
+                                        int ileUzytkowPrzed = 0;
+                                        int ileUzytkowPO = 0;
+                                        ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, bazaPoscalWyszukana[i].Dzialka);
+                                        ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, bazaPoscalWyszukana[i].Dzialka);
+
+                                        if (ileUzytkowPO < ileUzytkowPrzed)
+                                        {
+                                            // listaLewejTaabeli.Reverse();
+                                            for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
+                                            {
+
+                                              //  Console.WriteLine("PRAWA LISTA > 0 esle");
+                                                listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
+                                            }
+                                            //listaLewejTaabeli.Reverse();
+                                        }
+                                    }
+                                    catch (Exception)
+                                    {
+
+                                        Console.WriteLine("STAN PRZED: lipa z porownaniem działek do wstawienia pustej lini w rejestrze (Najprawdopodobniej inna liczba uzytkow)");
+                                    }
+                                }
+                                //***********************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ /\
 
                             }
                         }
                         else if (i == 0)
                         {
+
+
+
+
+
+
                             if (!bazaPoscalWyszukana[0].Dzialka.Equals(bazaPoscalWyszukana[1].Dzialka))
                             {
                                 string txtTMP = WczytaneTekstowki.PdzialkaJednRejBezKW.Replace(ZnakiZastepcze.powDzialkiN, bazaPoscalWyszukana[i].PowierzchniaDzialki);
@@ -1211,11 +1332,11 @@ namespace WZDE
                                 txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[i].Klasa);
                                 listaPrawejTaabeli.Add(txtTMP);
 
-                                       
+
 
                             }
-                            //--------------------------------
 
+                            //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \/ 
                             try
                             {
                                 int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, bazaPoscalWyszukana[i].Dzialka);
@@ -1226,7 +1347,7 @@ namespace WZDE
                                     // listaLewejTaabeli.Reverse();
                                     for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
                                     {
-                                        Console.WriteLine("PRAWA LISTA last index = 0  else");
+                                       // Console.WriteLine("PRAWA LISTA last index = 0  else");
                                         listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
                                     }
                                     //listaLewejTaabeli.Reverse();
@@ -1236,19 +1357,15 @@ namespace WZDE
                             {
                                 Console.WriteLine(a);
                             }
-                            //-----------------------------
+                            //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ /\ 
                         }
 
                     }
                 }
 
 
-
-
-
             // LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA
-            //LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA
-            //LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA LEWA
+
 
             for (int i = indexOstatniegoElem; i >= 0; i--) // utworzenie lewej części tabeli 
             {
@@ -1258,33 +1375,6 @@ namespace WZDE
 
                 if (indexOstatniegoElem == 0)
                 {
-
-                    //-----------------------------------------
-
-
-                    try
-                    {
-                        int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, baza[0].Dzialka);
-                        int ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, baza[0].Dzialka);
-
-                        if (ileUzytkowPO > ileUzytkowPrzed)
-                        {
-                            // listaLewejTaabeli.Reverse();
-                            for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
-                            {
-                                listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
-                                Console.WriteLine("PRAWA LISTA last index 0 ");
-                            }
-                            //listaLewejTaabeli.Reverse();
-                        }
-                    }
-
-                    catch (Exception a)
-                    {
-                        Console.WriteLine(a);
-                    }
-
-                    //-------------------------------------------------
 
                     string txtTMP = WczytaneTekstowki.LdzialkaJednRejBezKW.Replace(ZnakiZastepcze.PowDzialkiS, baza[0].PowierzchniaDzialki);
                     txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzialkiS, baza[0].Dzialka);
@@ -1300,7 +1390,29 @@ namespace WZDE
 
                     listaLewejTaabeli.Add(txtTMP);
 
+                    //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \/ 
+                    try
+                    {
+                        int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, baza[0].Dzialka);
+                        int ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, baza[0].Dzialka);
 
+                        if (ileUzytkowPO > ileUzytkowPrzed)
+                        {
+                            // listaLewejTaabeli.Reverse();
+                            for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
+                            {
+                                listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
+                           //     Console.WriteLine("PRAWA LISTA last index 0 ");
+                            }
+                            //listaLewejTaabeli.Reverse();
+                        }
+                    }
+
+                    catch (Exception a)
+                    {
+                        Console.WriteLine(a);
+                    }
+                    //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ /\
                 }
                 else
                 {
@@ -1320,27 +1432,24 @@ namespace WZDE
                         txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaS, baza[indexOstatniegoElem].Klasa);
                         listaLewejTaabeli.Add(txtTMP);
 
-                        //************ PO *********************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+                        //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \/ 
                         if (!baza[i - 1].Dzialka.Equals(baza[i].Dzialka))
                         {
                             try
                             {
-                                int ileUzytkowPrzed = 0;
-                                int ileUzytkowPO = 0;
-                                ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, baza[i].Dzialka);
-                                ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, baza[i].Dzialka);
+                                int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, baza[i].Dzialka);
+                                int ileUzytkowPO = ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, baza[i].Dzialka);
+
+
 
                                 if (ileUzytkowPO > ileUzytkowPrzed)
                                 {
-                                    // listaLewejTaabeli.Reverse();
                                     for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
                                     {
 
-                                        Console.WriteLine("LEWA LISTA > 0 esle");
+                                     //   Console.WriteLine("LEWA LISTA > 0 esle");
                                         listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
                                     }
-                                    //listaLewejTaabeli.Reverse();
                                 }
                             }
                             catch (Exception)
@@ -1350,7 +1459,8 @@ namespace WZDE
                             }
 
                         }
-                        //*********************************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                        //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ /\
+
 
                     }
                     else if (i > 0)
@@ -1358,7 +1468,6 @@ namespace WZDE
                         if (!baza[i + 1].Dzialka.Equals(baza[i].Dzialka))
                         {
 
-                           
 
                             string txtTMP = WczytaneTekstowki.LdzialkaJednRejBezKW.Replace(ZnakiZastepcze.PowDzialkiS, baza[i].PowierzchniaDzialki);
                             txtTMP = txtTMP.Replace(ZnakiZastepcze.nrDzialkiS, baza[i].Dzialka);
@@ -1373,21 +1482,7 @@ namespace WZDE
                             txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaS, baza[i].Klasa);
                             listaLewejTaabeli.Add(txtTMP);
 
-
-                        }
-                        else
-                        {
-                            string txtTMP = WczytaneTekstowki.LuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUS, baza[i].OZU);
-                            txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUS, baza[i].OFU);
-                            txtTMP = txtTMP.Replace(ZnakiZastepcze.powUzytkS, baza[i].PowierzchniaUzytku);
-                            txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaS, baza[i].Klasa);
-                            listaLewejTaabeli.Add(txtTMP);
-
-
-                            //****** PRZED *****************************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-                            //************ PO *********************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+                            //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \/ 
                             if (!baza[i - 1].Dzialka.Equals(baza[i].Dzialka))
                             {
                                 try
@@ -1403,7 +1498,7 @@ namespace WZDE
                                         for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
                                         {
 
-                                            Console.WriteLine("LEWA LISTA > 0 esle");
+                                     //       Console.WriteLine("LEWA LISTA > 0 esle");
                                             listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
                                         }
                                         //listaLewejTaabeli.Reverse();
@@ -1416,11 +1511,56 @@ namespace WZDE
                                 }
 
                             }
-                            //*********************************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                            //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ /\
 
-                            //*********************************************************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-    
+
+
+                        }
+                        else
+                        {
+                            string txtTMP = WczytaneTekstowki.LuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUS, baza[i].OZU);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUS, baza[i].OFU);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.powUzytkS, baza[i].PowierzchniaUzytku);
+                            txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaS, baza[i].Klasa);
+                            listaLewejTaabeli.Add(txtTMP);
+
+
+
+
+
+                            //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \/ 
+                            if (!baza[i - 1].Dzialka.Equals(baza[i].Dzialka))
+                            {
+                                try
+                                {
+                                    int ileUzytkowPrzed = 0;
+                                    int ileUzytkowPO = 0;
+                                    ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, baza[i].Dzialka);
+                                    ileUzytkowPO = iloscWyszukanychDzialekWTablicy(bazaPoscalWyszukana, baza[i].Dzialka);
+
+                                    if (ileUzytkowPO > ileUzytkowPrzed)
+                                    {
+                                        // listaLewejTaabeli.Reverse();
+                                        for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
+                                        {
+
+                                       //     Console.WriteLine("LEWA LISTA > 0 esle");
+                                            listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
+                                        }
+                                        //listaLewejTaabeli.Reverse();
+                                    }
+                                }
+                                catch (Exception)
+                                {
+
+                                    Console.WriteLine("STAN PRZED: lipa z porownaniem działek do wstawienia pustej lini w rejestrze (Najprawdopodobniej inna liczba uzytkow)");
+                                }
+
+                            }
+                            //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ /\
+
+
                         }
                     }
                     else if (i == 0)
@@ -1451,8 +1591,8 @@ namespace WZDE
 
                         }
 
-                        //--------------------------------
 
+                        //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \/ 
                         try
                         {
                             int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, baza[i].Dzialka);
@@ -1460,32 +1600,23 @@ namespace WZDE
 
                             if (ileUzytkowPO > ileUzytkowPrzed)
                             {
-                                // listaLewejTaabeli.Reverse();
                                 for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
                                 {
-                                    Console.WriteLine("PRAWA LISTA last index = 0  else");
+                                //    Console.WriteLine("PRAWA LISTA last index = 0  else");
                                     listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
                                 }
-                                //listaLewejTaabeli.Reverse();
                             }
                         }
                         catch (Exception a)
                         {
                             Console.WriteLine(a);
                         }
-                        //-----------------------------
+                        //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ /\
                     }
 
                 }
 
             }
-            // wierszDZUZYTK += wierszUzTMP;
-
-
-            //  dokHTML = dokHTML.Replace(wierszUzytku, wierszUz);
-            // dokHTML = dokHTML.Replace(wierszDzialki, wierszDzi);
-
-            //    dokHTML = dokHTML.Replace(wierszDziUzy, wierszDZUZYTK);
 
 
             string podmiankaTabela = "";

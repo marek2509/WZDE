@@ -89,10 +89,10 @@
                 <GroupBox.Header>Format wykazu</GroupBox.Header>
                 <WrapPanel>
 
-                    <RadioButton  x:Name="radioButtonPoJednostkach" Margin="40,0">Wczytanie txt sortowanych po jednostkach</RadioButton>
+                    <RadioButton  x:Name="radioButtonPoJednostkach" Margin="20,0">Wczytanie txt sortowanych po jednostkach</RadioButton>
                     <RadioButton  x:Name="radioButtonPoKW" >Wczytanie txt sortowanych po KW</RadioButton>
-                    <RadioButton x:Name="radioButtonPoJednostkachBezKW" IsChecked="True" Margin="40,5,0,0">Wczytanie txt sortowanych po jednostkach bez kw</RadioButton>
-
+                    <RadioButton x:Name="radioButtonPoJednostkachBezKW" IsChecked="True" Margin="20,5,5,0">Wczytanie txt sort. po jednostkach bez kw</RadioButton>
+                    <RadioButton  x:Name="radioButtonPoJednBezKWZUsunieciemNiezmienionychDzialek" Margin="20,5,0,0">Wczytanie txt po jedn. (usuwa niezm. dz.)</RadioButton>
                 </WrapPanel>
             </GroupBox>
         </Border>
