@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 
@@ -26,7 +27,10 @@ namespace WZDE
                 textBoxNrDecyzji.Text = Properties.Settings.Default.nrDecyzjiStarosty;
                 textBoxMiejsceStarosty.Text = Properties.Settings.Default.MiejsceStarosty;
                 textBoxdecyzjaZdnia.Text = Properties.Settings.Default.decyzjaZdnia;
-
+                radioButtonPoJednBezKWZUsunieciemNiezmienionychDzialek.IsChecked = Properties.Settings.Default.radioButtonPoJednBezKWZUsunieciemNiezmienionychDzialek;
+                radioButtonPoJednostkach.IsChecked = Properties.Settings.Default.radioButtonPoJednostkach;
+                radioButtonPoJednostkachBezKW.IsChecked = Properties.Settings.Default.radioButtonPoJednostkachBezKW;
+                radioButtonPoKW.IsChecked = Properties.Settings.Default.radioButtonPoKW;
             }
             catch (Exception e)
             {
@@ -44,6 +48,10 @@ namespace WZDE
                 Properties.Settings.Default.nrDecyzjiStarosty = textBoxNrDecyzji.Text;
                 Properties.Settings.Default.MiejsceStarosty = textBoxMiejsceStarosty.Text;
                 Properties.Settings.Default.decyzjaZdnia = textBoxdecyzjaZdnia.Text;
+                Properties.Settings.Default.radioButtonPoJednBezKWZUsunieciemNiezmienionychDzialek = (bool)radioButtonPoJednBezKWZUsunieciemNiezmienionychDzialek.IsChecked;
+                Properties.Settings.Default.radioButtonPoJednostkach = (bool)radioButtonPoJednostkach.IsChecked;
+                Properties.Settings.Default.radioButtonPoJednostkachBezKW = (bool)radioButtonPoJednostkachBezKW.IsChecked;
+                Properties.Settings.Default.radioButtonPoKW = (bool)radioButtonPoKW.IsChecked;
                 Properties.Settings.Default.Save();
             }
             catch (Exception e)
@@ -60,7 +68,16 @@ namespace WZDE
 
             InitializeComponent();
 
+            try
+            {
+                
+                Title = "inż. Marek Wojciechowicz    Wersja nr " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
+            }
+            catch
+            {
+                Console.WriteLine("błąd odczytu versji");
+            }
 
 
             wczytanieUstawienDomyślnych();

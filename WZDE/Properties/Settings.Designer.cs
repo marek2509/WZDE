@@ -94,5 +94,53 @@ namespace WZDE.Properties {
                 this["decyzjaZdnia"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool radioButtonPoJednostkach {
+            get {
+                return ((bool)(this["radioButtonPoJednostkach"]));
+            }
+            set {
+                this["radioButtonPoJednostkach"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool radioButtonPoKW {
+            get {
+                return ((bool)(this["radioButtonPoKW"]));
+            }
+            set {
+                this["radioButtonPoKW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool radioButtonPoJednostkachBezKW {
+            get {
+                return ((bool)(this["radioButtonPoJednostkachBezKW"]));
+            }
+            set {
+                this["radioButtonPoJednostkachBezKW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool radioButtonPoJednBezKWZUsunieciemNiezmienionychDzialek {
+            get {
+                return ((bool)(this["radioButtonPoJednBezKWZUsunieciemNiezmienionychDzialek"]));
+            }
+            set {
+                this["radioButtonPoJednBezKWZUsunieciemNiezmienionychDzialek"] = value;
+            }
+        }
     }
 }
