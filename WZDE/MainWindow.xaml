@@ -13,8 +13,8 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Padding="10" Click="OtworzZPliku" >Otwórz stan przed scaleniem</Button>
-            <Button Grid.Column="1" Padding="10" Click="OtworzStanPo">Otwórz stan po scaleniu</Button>
+            <Button Grid.Column="0" Padding="10" Click="OtworzZPliku" ToolTip="'OBREB''NR_JEDN''DZIALKA''POWIERZCHNIA''OFU''OZU''KLASA''POW_UZYTKU''Podmiot''Kw'">Otwórz stan przed scaleniem</Button>
+            <Button Grid.Column="1" Padding="10" Click="OtworzStanPo" ToolTip="'OBREB''NR_JEDN''DZIALKA''POWIERZCHNIA''OFU''OZU''KLASA''POW_UZYTKU''Podmiot''Kw'">Otwórz stan po scaleniu</Button>
             <Button Grid.Column="2" Padding="10" Click="ZapiszDoPliku">Zapisz do pliku</Button>
         </Grid>
         <Border BorderThickness="1" CornerRadius="2" BorderBrush="Black" >
@@ -78,6 +78,7 @@
             </Grid>
         </Border>
         <Button Click="ZapisUstawien" Padding="10" >Zapis powyższych ustawień</Button>
+      
         <Grid Height="110">
             <Grid.ColumnDefinitions></Grid.ColumnDefinitions>
             <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" >
@@ -88,9 +89,10 @@
             <GroupBox>
                 <GroupBox.Header>Format wykazu</GroupBox.Header>
                 <WrapPanel>
-
+                  
                     <RadioButton  x:Name="radioButtonPoJednostkach" Margin="20,0">Wczytanie txt sortowanych po jednostkach</RadioButton>
                     <RadioButton  x:Name="radioButtonPoKW" >Wczytanie txt sortowanych po KW</RadioButton>
+                    
                     <RadioButton x:Name="radioButtonPoJednostkachBezKW" Margin="20,5,5,0">Wczytanie txt sort. po jednostkach bez kw</RadioButton>
                     <RadioButton  x:Name="radioButtonPoJednBezKWZUsunieciemNiezmienionychDzialek" Margin="20,5,0,0">Wczytanie txt po jedn. (usuwa niezm. działki)</RadioButton>
                 </WrapPanel>

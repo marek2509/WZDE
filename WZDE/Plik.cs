@@ -109,7 +109,14 @@ namespace WZDE
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(" PROBLEM Z TEKSTÓWKA! błędna linia: " + i, "ERROR", MessageBoxButton.OK);
+                    // var result = MessageBox.Show("Are you sure you want to exit?", "Application Exit", MessageBoxButtons.YesNo);
+
+                    var result = MessageBox.Show("PROBLEM Z TEKSTÓWKĄ! Błędna linia nr: " + i + "\nPrzerwać działanie aplikacji?", "ERROR", MessageBoxButton.YesNo);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        Application.Current.Shutdown();
+                    }
                 }
 
             }
