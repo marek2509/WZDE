@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="WZDE-> inż. Marek Wojciechowicz" Height="470" Width="600">
     <StackPanel>
+        <Menu>
+            <MenuItem Header="Plik">
+                <MenuItem Header="_Otwórz">     </MenuItem>
+                <MenuItem Header="zamknij"></MenuItem>
+            </MenuItem>
+        </Menu>
         <Grid HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>

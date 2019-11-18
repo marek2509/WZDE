@@ -36,7 +36,9 @@ namespace WZDE
 
             if (liczba.Length - liczba.IndexOf(",") == 5)
             {
-
+                Console.WriteLine("o toto: " + liczba + " -> "+ liczba.IndexOf(","));
+                Console.WriteLine(liczba.Length - liczba.IndexOf(","));
+                if(liczba.IndexOf(",") == -1) liczba += ",0000";
             }
             else if (liczba.Length - liczba.IndexOf(",") == 4)
             {
