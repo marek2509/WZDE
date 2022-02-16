@@ -111,5 +111,44 @@ namespace WZDE
             return result;
         }
 
+        public static String DigitToSpokenHaAndM2(string input)
+        {
+            Console.WriteLine("inpt" + input);
+            StringBuilder sb = new StringBuilder();
+            string ha = "0";
+            string m2 = "0";
+            var splitedText = input.Split(',', '.');
+            Console.WriteLine(splitedText.Length);
+
+            if (splitedText.Length >= 2)
+            {
+                ha = splitedText[0];
+                m2 = splitedText[1];
+         
+            
+
+            } else if (splitedText.Length >= 1)
+            {
+                m2 = splitedText[0];
+           
+            }
+
+
+
+            if (Convert.ToInt32(ha) != 0)
+            {
+                sb.Append(DigitsStringToSpokenString(ha));
+                sb.Append(" ha ");
+            }
+          
+            if (Convert.ToInt32(m2) != 0)
+            {
+                sb.Append(DigitsStringToSpokenString(m2));
+                sb.Append(" m2");
+            }
+
+            return sb.ToString();
+        }
+
     }
 }

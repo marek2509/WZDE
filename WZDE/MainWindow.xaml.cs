@@ -60,7 +60,7 @@ namespace WZDE
             }
         }
 
-        
+
 
         public MainWindow()
         {
@@ -70,7 +70,7 @@ namespace WZDE
 
             try
             {
-                
+
                 Title = "inż. Marek Wojciechowicz    Wersja nr " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             }
@@ -86,10 +86,10 @@ namespace WZDE
 
         private void OtworzZPliku(object sender, RoutedEventArgs e)
         {
-            
+
 
             string calyOdczzytanyText = "";
-            poczatek:
+        poczatek:
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             // Set filter for file extension and default file extension 
             dlg.DefaultExt = ".txt";
@@ -270,7 +270,6 @@ namespace WZDE
                                 string nazwaPliku = bazaTmp[0].NrJedn;
                                 using (Stream s = File.Open(svd.FileName + nazwaPliku + ".doc", FileMode.Create))
                                 using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
-
                                     try
                                     {
                                         try
@@ -301,9 +300,8 @@ namespace WZDE
                     }
                     else if (radioButtonPoJednBezKWZUsunieciemNiezmienionychDzialek.IsChecked == true)
                     {
-                        //-----------------------------------------------------poczatek odczytu Po KW
                         StringBuilder stringBuilder = new StringBuilder();
-
+                        StringBuilder sbWszystkieDokWjednym = new StringBuilder();
                         for (int i = 0; i < bazaDanych.Count(); i++)
                         {
                             bazaTmp[licznikNowejBazy] = bazaDanych[i];
@@ -319,8 +317,7 @@ namespace WZDE
 
 
                                 //-----------------------------------------------------------------------------------------------
-                                #region 
-
+                             
                                 List<string> dzialkiDoUsuniecia = new List<string>();
                                 BazaDanych[] bazaPRZEDWyszukana = new BazaDanych[licznikNowejBazy + 1];
 
@@ -360,61 +357,147 @@ namespace WZDE
                                 }
 
 
-                               
 
-                                BazaDanych[] BdPRZED = Plik.usunDzialkiZListy(bazaPRZEDWyszukana, dzialkiDoUsuniecia);
-                                BazaDanych[] BdPO = Plik.usunDzialkiZListy(bazaPoScalDoJednoski, dzialkiDoUsuniecia);
+                                BazaDanych[] BdPRZED = null;
+                                BazaDanych[] BdPO = null;
+                                BdPRZED = Plik.usunDzialkiZListy(bazaPRZEDWyszukana, dzialkiDoUsuniecia);
+                                BdPO = Plik.usunDzialkiZListy(bazaPoScalDoJednoski, dzialkiDoUsuniecia);
 
-                             
+
 
                                 if (BdPO == null && BdPRZED == null)
                                 {
                                     licznikNowejBazy = 0;
                                     continue;
                                 }
-                                Console.WriteLine("-*-**--**-***-*-**-*-*-*-*--*-*-**--*-**-*--*--*-*-*-*-**-");
-                                foreach (var item in BdPRZED)
-                                {
-                                    Console.Write(item.NrJedn + "<>" + item.Dzialka + "   ");
-                                }
-                                foreach (var item in BdPO)
-                                {
-                                    Console.Write(item.NrJedn + "<>" + item.Dzialka + "   ");
-                                }
+
+                                //Console.WriteLine("-*-**--**-***-*-**-*-*-*-*--*-*-**--*-**-*--*--*-*-*-*-**-");
+                                //foreach (var item in bazaPRZEDWyszukana)
+                                //{
+                                //    Console.Write(item.Dzialka + " ");
+                                //}
+
+                                //if (BdPRZED != null)
+                                //{
+                                //    foreach (var item in BdPRZED)
+                                //    {
+                                //        Console.Write(item.NrJedn + "<>" + item.Dzialka + "   ");
+                                //    }
+                                //}
+                                //else
+                                //{
+                                //    Console.WriteLine("NULL BdPRZED");
+                                //    //BdPRZED = new BazaDanych[1];
+                                //}
+                                //Console.WriteLine("------------stan po---------------");
+
+                                //if (BdPO != null)
+                                //{
+
+
+
+                                //    Console.WriteLine("BdPO (przed petla)");
+                                //    foreach (var item in BdPO)
+                                //    {
+                                //        Console.Write("BdPO (w trakcie)>>>");
+                                //        Console.Write(item.NrJedn + "<>" + item.Dzialka + "   ");
+                                //    }
+                                //}
+                                //else
+                                //{
+                                //    Console.WriteLine("NULL BdPO");
+                                //    //BdPO = new BazaDanych[1];
+                                //}
                                 //--------------------------------------------------------------------------------------------------
 
 
-
+                                if (BdPRZED == null)
+                                {
+                                    Console.WriteLine(">=0");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("0<");
+                                }
 
                                 using (Stream s = File.Open(svd.FileName + nazwaPliku + ".doc", FileMode.Create))
                                 using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
-                                   
-                                try
+                                {
+                                    try
                                     {
+                                        Console.WriteLine("BdPRZED    <   >   BdPO");
+                                        Console.WriteLine(BdPRZED == null);
+                                        Console.WriteLine(BdPO == null);
+                                        int countBdPrzed = BdPRZED == null ? 0 : BdPRZED.Count();
 
-                                        try
-                                        {
+                                        string dokument = Plik.generowanieRejestruPoJednostceBezKW(BdPRZED, BdPO, (countBdPrzed - 1));
+                                        Console.WriteLine("---------");
 
-                                          
-                                            Console.WriteLine(BdPRZED.Count() + " " + BdPO.Count() + "o zesz");
-                                            sw.WriteLine(Plik.generowanieRejestruPoJednostceBezKW(BdPRZED, BdPO, (BdPRZED.Count()-1)));
-                                            licznikNowejBazy = 0;
-                                            sw.Close();
-                                            #endregion
-                                        }
-                                        catch (Exception exc)
+
+
+
+
+
+                                        //Console.WriteLine(BdPRZED.Count() + " " + BdPO.Count() + "o zesz");
+                                        sw.WriteLine(dokument);
+                                        licznikNowejBazy = 0;
+                                        sw.Close();
+
+                                        if (i == 0)
                                         {
-                                            MessageBox.Show(exc + "  problem z plikiem");
+                                          dokument =  dokument.Replace("</body>", "<div>");
+                                          dokument = dokument.Replace("</html>", "<div>");
                                         }
+                                        else if (i == bazaDanych.Count() - 1)
+                                        {
+                                            dokument = dokument.Replace("<head>", "<div>");
+                                            dokument = dokument.Replace("</head>", "</div>");
+                                            dokument = dokument.Replace("<body>", "</div>");
+                                            dokument = dokument.Replace("<html>", "</div>");
+                                        }
+                                        else
+                                        {
+                                            dokument = dokument.Replace("<html>", "<div>");
+                                            dokument = dokument.Replace("</html>", "</div>");
+                                            dokument = dokument.Replace("<head>", "<div>");
+                                            dokument = dokument.Replace("</head>", "</div>");
+                                            dokument = dokument.Replace("<body>", "<div>");
+                                            dokument = dokument.Replace("</body>", "</div>");
+                                        }
+
+
+
+                                        sbWszystkieDokWjednym.Append(dokument);
+                                        string HTML_PodzialSekcjiNaStronieNieparzystej = "<span style='font-size:12.0pt;font-family:\"Times New Roman\",\"serif\";mso-fareast-font-family: \"Times New Roman\";mso-ansi-language:PL;mso-fareast-language:PL;mso-bidi-language: AR-SA'><br clear=all style='page-break-before:right;mso-break-type:section-break'></span>";
+                                        sbWszystkieDokWjednym.Append(HTML_PodzialSekcjiNaStronieNieparzystej);
+                                        Console.WriteLine("---KONIEC^^^^^^^^^^------");
                                     }
-                                    catch (Exception ex)
+                                    catch (Exception exc)
                                     {
-                                        MessageBox.Show(ex.ToString());
+                                        MessageBox.Show(exc + "  problem z plikiem \n" + BdPRZED);
                                     }
-
+                                }
                             }
 
                         }
+
+
+                        using (Stream s = File.Open(svd.FileName + ".doc", FileMode.Create))
+                        using (StreamWriter sw = new StreamWriter(s, Encoding.Default))
+                        {
+                            try
+                            {
+                                sw.WriteLine(sbWszystkieDokWjednym.ToString());
+                                sw.Close();
+
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+
+
 
                         textBoxBledy.Text += stringBuilder.ToString();
                         //-------------------------------------------------------koniec
@@ -429,7 +512,7 @@ namespace WZDE
         private void OtworzStanPo(object sender, RoutedEventArgs e)
         {
             string calyOdczzytanyText = "";
-            poczatek:
+        poczatek:
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             // Set filter for file extension and default file extension 
             dlg.DefaultExt = ".txt";

@@ -189,7 +189,7 @@ DANYCH EWIDENCYJNYCH </span></b></p>
   style='font-size:7.0pt;font-family:"Arial Narrow","sans-serif";color:black'><br>
   <br>
   <br>
-  Nr działki<br>
+  Nr działki<br>ewidencyjnej
   </span></p>
   </td>
   <td width=7% valign=top style='border-top:solid windowtext 1.0pt;
@@ -210,7 +210,7 @@ DANYCH EWIDENCYJNYCH </span></b></p>
   style='font-size:7.0pt;font-family:"Arial Narrow","sans-serif";color:black'><br>
   <br>
   Rodzaj użytku <br>
-  i klasa<br>
+  gruntowego<br> i klasa bonitacyjna<br>
   <br>
   </span></p>
   </td>
@@ -224,7 +224,7 @@ DANYCH EWIDENCYJNYCH </span></b></p>
   Pole<br>
   powierzchni użytków <br>
   i klas <br>
-  w działce<br>
+  w działce ewid.<br>
    [ha]</span></p>
   </td>
   <td width=8 valign=top style='border:none;border-left:solid windowtext 1.0pt;
@@ -243,7 +243,7 @@ DANYCH EWIDENCYJNYCH </span></b></p>
   style='font-size:7.0pt;font-family:"Arial Narrow","sans-serif";color:black'><br>
   <br>
   <br>
-  Nr działki<br>
+  Nr działki<br>ewidencyjnej
   </span></p>
   </td>
   <td width=7% valign=top style='border-top:solid windowtext 1.0pt;
@@ -264,7 +264,7 @@ DANYCH EWIDENCYJNYCH </span></b></p>
   style='font-size:7.0pt;font-family:"Arial Narrow","sans-serif";color:black'><br>
   <br>
   Rodzaj użytku <br>
-   i klasa<br>
+  gruntowego<br> i klasa bonitacyjna<br>
   <br>
   </span></p>
   </td>
@@ -278,7 +278,7 @@ DANYCH EWIDENCYJNYCH </span></b></p>
   Pole <br>
   powierzchni użytków <br>
   i klas <br>
-  w działce<br>
+  w działce ewid.<br>
    [ha]</span></p>
   </td>
   <td valign=top style='border:solid windowtext 1.0pt;
@@ -560,7 +560,7 @@ bebechy
   padding:0cm 0cm 0.cm 0cm'>
   <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;margin-left:0.1cm;margin-right:0.1;line-height:
   normal;text-autospace:none'><span style='font-size:9.0pt;font-family:"Arial Narrow","sans-serif";
-  color:black'>Pow. słownie:<b>&nbsp;&lt;sPJRs&gt;&nbsp;m2</b></span></p>
+  color:black'>Pow. słownie:<b>&nbsp;&lt;sPJRs&gt;&nbsp;</b></span></p>
   </td>
 
   <td valign=top style='border:none;border-left:solid windowtext 1.0pt;
@@ -573,7 +573,7 @@ bebechy
   border-bottom:none;padding:0cm 0cm 0cm 0cm'>
   <p class=MsoNormal style='margin-bottom:0cm;margin-left:0.1cm; margin-right:0.1;margin-bottom:.0001pt;line-height:
   normal;text-autospace:none'><span style='font-size:9.0pt;font-family:"Arial Narrow","sans-serif";
-  color:black'>Pow. słownie:<b>&nbsp;&lt;sPJRn&gt;&nbsp;m2</b></span></p>
+  color:black'>Pow. słownie:<b>&nbsp;&lt;sPJRn&gt;&nbsp;</b></span></p>
   </td>
  </tr>
 

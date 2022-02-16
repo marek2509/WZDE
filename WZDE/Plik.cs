@@ -294,6 +294,8 @@ namespace WZDE
 
         public static string oblPowJednoskiPoUzytku(BazaDanych[] baza, int licznik = -1)
         {
+            if (baza == null) return "";
+
             if (licznik == -1) licznik = baza.Count() - 1;
             decimal powUzytku = 0;
             decimal powJednrej = 0;
@@ -310,19 +312,30 @@ namespace WZDE
 
         public static string oblPowDoSlownejLiczby(BazaDanych[] baza, int licznik = -1)
         {
+            if (baza == null) return "0,0";
+
             if (licznik == -1) licznik = baza.Count() - 1;
             decimal powUzytku = 0;
             decimal powJednrej = 0;
 
             for (int i = 0; i <= licznik; i++)
             {
-
                 decimal.TryParse(baza[i].PowierzchniaUzytku.Replace(".", ","), out powUzytku);
                 powJednrej += powUzytku;
             }
 
             int powWMetrach = (int)(powJednrej * 10000);
-            return powWMetrach.ToString();
+            string powWMetrachString = powWMetrach.ToString();
+
+            if (powWMetrach >= 10000)
+            {
+                return powWMetrachString.Insert(powWMetrachString.Length - 4, ",");
+            }
+            else
+            {
+                return powWMetrachString;
+            }
+
         }
 
         public static BazaDanych[] wyszukanieBazyPoScaleniu(BazaDanych[] bazaDanychPoScaleniu, string wyszukiwanaJednostka) //po jednostce
@@ -637,7 +650,7 @@ namespace WZDE
                 wiekszy = listaLewejTaabeli.Count;
             }
 
-            Console.WriteLine("qwerty lewa: " + listaLewejTaabeli.Count + "   prawa " + listaPrawejTaabeli.Count);
+            //Console.WriteLine("qwerty lewa: " + listaLewejTaabeli.Count + "   prawa " + listaPrawejTaabeli.Count);
 
 
             listaLewejTaabeli.Reverse();
@@ -676,7 +689,7 @@ namespace WZDE
             dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRs, oblPowJednoskiPoUzytku(baza, indexOstatniegoElem));
             dokHTML = dokHTML.Replace(ZnakiZastepcze.JednRejS, baza[0].NrJedn);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotS, baza[0].Podmiot);
-            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(baza, indexOstatniegoElem)));
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitToSpokenHaAndM2(oblPowDoSlownejLiczby(baza, indexOstatniegoElem)));
             dokHTML = dokHTML.Replace(ZnakiZastepcze.obrebEwidencyjny, Properties.Settings.Default.Obreb);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.gmina, Properties.Settings.Default.Gmina);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.IdZglPracGeodez, Properties.Settings.Default.IdZglPrac);
@@ -691,7 +704,7 @@ namespace WZDE
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, oblPowJednoskiPoUzytku(bazaPoscalWyszukana));
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.jednRejesrtNowa, bazaPoscalWyszukana[0].NrJedn);
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, bazaPoscalWyszukana[0].Podmiot);
-                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitToSpokenHaAndM2(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
 
             }
             else
@@ -970,7 +983,7 @@ namespace WZDE
                 wiekszy = listaLewejTaabeli.Count;
             }
 
-            Console.WriteLine("qwerty lewa: " + listaLewejTaabeli.Count + "   prawa " + listaPrawejTaabeli.Count + " " + baza[0].KW);
+            //Console.WriteLine("qwerty lewa: " + listaLewejTaabeli.Count + "   prawa " + listaPrawejTaabeli.Count + " " + baza[0].KW);
 
             if (listaPrawejTaabeli.Count == 0)
             {
@@ -1013,7 +1026,7 @@ namespace WZDE
             dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRs, (oblPowJednoskiPoUzytku(baza, indexOstatniegoElem)));
             // dokHTML = dokHTML.Replace(ZnakiZastepcze.JednRejS, baza[0].NrJedn);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotS, baza[0].Podmiot);
-            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(baza, indexOstatniegoElem)));
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitToSpokenHaAndM2(oblPowDoSlownejLiczby(baza, indexOstatniegoElem)));
             dokHTML = dokHTML.Replace(ZnakiZastepcze.obrebEwidencyjny, Properties.Settings.Default.Obreb);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.gmina, Properties.Settings.Default.Gmina);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.IdZglPracGeodez, Properties.Settings.Default.IdZglPrac);
@@ -1028,7 +1041,7 @@ namespace WZDE
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, (oblPowJednoskiPoUzytku(bazaPoscalWyszukana)));
                 //  dokHTML = dokHTML.Replace(ZnakiZastepcze.jednRejesrtNowa, bazaPoscalWyszukana[0].NrJedn);
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, bazaPoscalWyszukana[0].Podmiot);
-                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitToSpokenHaAndM2(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
 
             }
             else
@@ -1064,7 +1077,7 @@ namespace WZDE
                 }
             }
 
-            if (liscaDanych.Count() == 0) return bazaPoUsunieciuNiechcianych;
+            if (liscaDanych.Count == 0) return bazaPoUsunieciuNiechcianych;
 
             bazaPoUsunieciuNiechcianych = new BazaDanych[liscaDanych.Count()];
             for (int i = 0; i < liscaDanych.Count(); i++)
@@ -1107,13 +1120,22 @@ namespace WZDE
 
         public static string generowanieRejestruPoJednostceBezKW(BazaDanych[] baza, BazaDanych[] bazaDanychPoScal, int indexOstatniegoElem)
         {
-            BazaDanych[] bazaPoscalWyszukana = wyszukanieBazyPoScaleniu(bazaDanychPoScal, baza[0].NrJedn);
+            Console.WriteLine("#KONTR1");
+
+
+            string nrJedn = baza != null ? baza[0].NrJedn : bazaDanychPoScal[0].NrJedn;
+
+
+            BazaDanych[] bazaPoscalWyszukana = wyszukanieBazyPoScaleniu(bazaDanychPoScal, nrJedn);
+            Console.WriteLine(bazaPoscalWyszukana == null);
+            Console.WriteLine("#KONTR2");
             BazaDanych[] bazaPRZEDWyszukana = new BazaDanych[indexOstatniegoElem + 1];
+            Console.WriteLine("#KONTR3");
             for (int i = 0; i <= indexOstatniegoElem; i++)
             {
                 bazaPRZEDWyszukana[i] = baza[i];
             }
-
+            Console.WriteLine("#KONTR4");
 
             // w listach przechowywane będą linie html (podzielonie po 1/2 na lewa i prawa stronę) do wygenerowania raportów a następnie połączone
             List<string> listaLewejTaabeli = new List<string>();
@@ -1377,9 +1399,9 @@ namespace WZDE
             for (int i = indexOstatniegoElem; i >= 0; i--) // utworzenie lewej części tabeli 
             {
 
-                Console.WriteLine("i gen " + i);
+                //Console.WriteLine("i gen " + i);
 
-
+                Console.WriteLine("test1");
                 if (indexOstatniegoElem == 0)
                 {
 
@@ -1388,7 +1410,7 @@ namespace WZDE
                     txtTMP = txtTMP.Replace(ZnakiZastepcze.KWs, baza[0].KW);
 
                     listaLewejTaabeli.Add(txtTMP);
-
+                    Console.WriteLine("test2");
 
                     txtTMP = WczytaneTekstowki.LuzytekJednRejBezKW.Replace(ZnakiZastepcze.OZUS, baza[0].OZU);
                     txtTMP = txtTMP.Replace(ZnakiZastepcze.OFUS, baza[0].OFU);
@@ -1674,35 +1696,43 @@ namespace WZDE
             string dokHTML = WczytaneTekstowki.szablonJednRejBezKW;
             dokHTML = dokHTML.Replace("bebechy", podmiankaTabela);
             //   dokHTML = dokHTML.Replace(ZnakiZastepcze.Podmiot, baza[0].Podmion);
+
             dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRs, oblPowJednoskiPoUzytku(baza, indexOstatniegoElem));
-            dokHTML = dokHTML.Replace(ZnakiZastepcze.JednRejS, baza[0].NrJedn);
-            dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotS, baza[0].Podmiot);
-            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(baza, indexOstatniegoElem)));
+            Console.WriteLine("test3");
+
+            string nrJednostki = baza == null ? "" : baza[0].NrJedn;
+            string podmiot = baza == null ? "" : baza[0].Podmiot;
+
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.JednRejS, nrJednostki);
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotS, podmiot);
+
+            Console.WriteLine("test4");
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitToSpokenHaAndM2(oblPowDoSlownejLiczby(baza, indexOstatniegoElem)));
             dokHTML = dokHTML.Replace(ZnakiZastepcze.obrebEwidencyjny, Properties.Settings.Default.Obreb);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.gmina, Properties.Settings.Default.Gmina);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.IdZglPracGeodez, Properties.Settings.Default.IdZglPrac);
-            dokHTML = dokHTML.Replace(ZnakiZastepcze.KWn, baza[0].KW);
+            string kw = baza == null ? "" : baza[0].KW;
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.KWn, kw);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.starostaW, Properties.Settings.Default.MiejsceStarosty);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.nrDecyzji, Properties.Settings.Default.nrDecyzjiStarosty);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.decyzjaZdnia, Properties.Settings.Default.decyzjaZdnia);
-
+            Console.WriteLine("kkx2");
             if (bazaPoscalWyszukana.Count() > 0)
             {
 
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, oblPowJednoskiPoUzytku(bazaPoscalWyszukana));
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.jednRejesrtNowa, bazaPoscalWyszukana[0].NrJedn);
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, bazaPoscalWyszukana[0].Podmiot);
-                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitsStringToSpokenString(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
-
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitToSpokenHaAndM2(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
             }
             else
             {
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, "");
-                dokHTML = dokHTML.Replace(ZnakiZastepcze.jednRejesrtNowa, "");
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.jednRejesrtNowa, nrJednostki);
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, "");
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, "");
             }
-
+            Console.WriteLine("kkx3");
             return dokHTML;
         }
     }
