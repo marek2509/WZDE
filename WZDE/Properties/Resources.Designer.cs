@@ -19,7 +19,7 @@ namespace WZDE.Properties {
     // przez narzędzie, takie jak ResGen lub Visual Studio.
     // Aby dodać lub usunąć składową, edytuj plik ResX, a następnie ponownie uruchom narzędzie ResGen
     // z opcją /str lub ponownie utwórz projekt VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -443,7 +443,7 @@ namespace WZDE.Properties {
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;html&gt;
         ///
         ///&lt;head&gt;
-        ///&lt;meta http-equiv=Content-Type content=&quot;text/html; charset=utf8&quot;&gt;
+        ///&lt;meta http-equiv=Content-Type content=&quot;text/html; charset=windows-1250&quot;&gt;
         ///&lt;meta name=Generator content=&quot;Microsoft Word 12 (filtered)&quot;&gt;
         ///&lt;style&gt;
         ///&lt;!--
@@ -460,7 +460,7 @@ namespace WZDE.Properties {
         ///@font-face
         ///	{font-family:&quot;FL Pismo Techniczne&quot;;
         ///	panose-1:0 0 0 0 0 0 0 0 0 0;}
-        /// /* Style Definitio [obcięto pozostałą część ciągu]&quot;;.
+        /// /* Style D [obcięto pozostałą część ciągu]&quot;;.
         /// </summary>
         internal static string SZABLONJednRejBezKW {
             get {

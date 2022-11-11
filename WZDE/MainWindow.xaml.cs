@@ -31,6 +31,7 @@ namespace WZDE
                 radioButtonPoJednostkach.IsChecked = Properties.Settings.Default.radioButtonPoJednostkach;
                 radioButtonPoJednostkachBezKW.IsChecked = Properties.Settings.Default.radioButtonPoJednostkachBezKW;
                 radioButtonPoKW.IsChecked = Properties.Settings.Default.radioButtonPoKW;
+                comboBox0Metry1Ary.SelectedIndex = Properties.Settings.Default.czyAry ? 1 : 0;
             }
             catch (Exception e)
             {
@@ -38,7 +39,7 @@ namespace WZDE
             }
         }
 
-        public void zapisUstawienDomyslnych()
+        public void ZapisUstawienDomyslnych()
         {
             try
             {
@@ -52,6 +53,7 @@ namespace WZDE
                 Properties.Settings.Default.radioButtonPoJednostkach = (bool)radioButtonPoJednostkach.IsChecked;
                 Properties.Settings.Default.radioButtonPoJednostkachBezKW = (bool)radioButtonPoJednostkachBezKW.IsChecked;
                 Properties.Settings.Default.radioButtonPoKW = (bool)radioButtonPoKW.IsChecked;
+                Properties.Settings.Default.czyAry = comboBox0Metry1Ary.SelectedIndex == 1 ? true : false;
                 Properties.Settings.Default.Save();
             }
             catch (Exception e)
@@ -64,30 +66,28 @@ namespace WZDE
 
         public MainWindow()
         {
-
-
             InitializeComponent();
-
             try
             {
 
                 Title = "inż. Marek Wojciechowicz    Wersja nr " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
-
             }
             catch
             {
                 Console.WriteLine("błąd odczytu versji");
             }
-
-
             wczytanieUstawienDomyślnych();
 
+            Console.WriteLine("Plik.metodaDopisujeZera(\"2132\")); + "+Plik.metodaDopisujeZera("2132"));
+            Console.WriteLine("Plik.metodaDopisujeZera(\"3213,\")); + "+Plik.metodaDopisujeZera("3213,"));
+            Console.WriteLine("Plik.metodaDopisujeZera(\"231312,2\")); + "+Plik.metodaDopisujeZera("231312,2"));
+            Console.WriteLine("Plik.metodaDopisujeZera(\"231312,32\")); + "+Plik.metodaDopisujeZera("231312,32"));
+            Console.WriteLine("Plik.metodaDopisujeZera(\"123,312\")); + "+Plik.metodaDopisujeZera("123,312"));
+            Console.WriteLine("Plik.metodaDopisujeZera(\"123, 3122\")); + "+Plik.metodaDopisujeZera("123,3122"));
         }
 
         private void OtworzZPliku(object sender, RoutedEventArgs e)
         {
-
-
             string calyOdczzytanyText = "";
         poczatek:
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -274,7 +274,6 @@ namespace WZDE
                                     {
                                         try
                                         {
-
                                             sw.WriteLine(Plik.generowanieRejestruPoJednostceBezKW(bazaTmp, bazaDanychPos, licznikNowejBazy));
                                             licznikNowejBazy = 0;
                                             sw.Close();
@@ -288,9 +287,7 @@ namespace WZDE
                                     {
                                         MessageBox.Show(ex.ToString());
                                     }
-
                             }
-
                         }
 
                         textBoxBledy.Text += stringBuilder.ToString();
@@ -317,7 +314,7 @@ namespace WZDE
 
 
                                 //-----------------------------------------------------------------------------------------------
-                             
+
                                 List<string> dzialkiDoUsuniecia = new List<string>();
                                 BazaDanych[] bazaPRZEDWyszukana = new BazaDanych[licznikNowejBazy + 1];
 
@@ -326,10 +323,7 @@ namespace WZDE
                                     bazaPRZEDWyszukana[k] = bazaTmp[k];
                                 }
 
-
                                 BazaDanych[] bazaPoScalDoJednoski = Plik.wyszukanieBazyPoScaleniu(bazaDanychPos, bazaPRZEDWyszukana[0].NrJedn);
-                                Console.WriteLine("jestem przed tym1");
-
                                 for (int l = 0; l < bazaPRZEDWyszukana.Count(); l++)
                                 {
                                     if (l == 0)
@@ -337,13 +331,10 @@ namespace WZDE
                                         BazaDanych[] tymczasPO = Plik.wyszukanieBazyPoDziałkach(bazaPoScalDoJednoski, bazaPRZEDWyszukana[l].Dzialka);
                                         BazaDanych[] tymczasPRZED = Plik.wyszukanieBazyPoDziałkach(bazaPRZEDWyszukana, bazaPRZEDWyszukana[l].Dzialka);
 
-
-
                                         if (Plik.czyTakaSamaZawartosc(tymczasPRZED, tymczasPO))
                                         {
                                             dzialkiDoUsuniecia.Add(bazaPRZEDWyszukana[l].Dzialka);
                                         }
-
                                     }
                                     else if (!bazaPRZEDWyszukana[l - 1].Dzialka.Equals(bazaPRZEDWyszukana[l].Dzialka))
                                     {
@@ -445,8 +436,8 @@ namespace WZDE
 
                                         if (i == 0)
                                         {
-                                          dokument =  dokument.Replace("</body>", "<div>");
-                                          dokument = dokument.Replace("</html>", "<div>");
+                                            dokument = dokument.Replace("</body>", "<div>");
+                                            dokument = dokument.Replace("</html>", "<div>");
                                         }
                                         else if (i == bazaDanych.Count() - 1)
                                         {
@@ -609,12 +600,17 @@ namespace WZDE
             // Console.WriteLine(ileBrakujeJednostekWStarejBazie + " : brak jednostek");
         }
 
-
-
         private void ZapisUstawien(object sender, RoutedEventArgs e)
         {
-            zapisUstawienDomyslnych();
+            ZapisUstawienDomyslnych();
         }
+
+        private void comboBox0Metry1Ary_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            Properties.Settings.Default.czyAry = comboBox0Metry1Ary.SelectedIndex == 1 ? true : false;
+            Properties.Settings.Default.Save();
+        }
+
 
         //private void RadioButtonPoJednostkach_Checked(object sender, RoutedEventArgs e)
         //{

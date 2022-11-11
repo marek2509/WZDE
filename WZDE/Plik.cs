@@ -33,32 +33,57 @@ namespace WZDE
 
         public static string metodaDopisujeZera(string liczba)
         {
-
-            if (liczba.Length - liczba.IndexOf(",") == 5)
+            if (Properties.Settings.Default.czyAry)
             {
-                Console.WriteLine("o toto: " + liczba + " -> "+ liczba.IndexOf(","));
-                Console.WriteLine(liczba.Length - liczba.IndexOf(","));
-                if(liczba.IndexOf(",") == -1) liczba += ",0000";
-            }
-            else if (liczba.Length - liczba.IndexOf(",") == 4)
-            {
-                liczba += "0";
-            }
-            else if (liczba.Length - liczba.IndexOf(",") == 3)
-            {
-                liczba += "00";
-            }
-            else if (liczba.Length - liczba.IndexOf(",") == 2)
-            {
-                liczba += "000";
-            }
-            else if (liczba.Length - liczba.IndexOf(",") == 1)
-            {
-                liczba += "0000";
+                if (liczba.IndexOf(",") == -1)
+                {
+                    liczba += ",00";
+                }
+                else if (liczba.Length - liczba.IndexOf(",") > 2)
+                {
+                    return liczba;
+                }
+                else if (liczba.Length - liczba.IndexOf(",") == 2)
+                {
+                    liczba += "0";
+                }
+                else if (liczba.Length - liczba.IndexOf(",") == 1)
+                {
+                    liczba += "00";
+                }
+                else
+                {
+                    liczba += ",00";
+                }
             }
             else
             {
-                liczba += ",0000";
+                if (liczba.Length - liczba.IndexOf(",") == 5)
+                {
+                    Console.WriteLine("o toto: " + liczba + " -> " + liczba.IndexOf(","));
+                    Console.WriteLine(liczba.Length - liczba.IndexOf(","));
+                    if (liczba.IndexOf(",") == -1) liczba += ",0000";
+                }
+                else if (liczba.Length - liczba.IndexOf(",") == 4)
+                {
+                    liczba += "0";
+                }
+                else if (liczba.Length - liczba.IndexOf(",") == 3)
+                {
+                    liczba += "00";
+                }
+                else if (liczba.Length - liczba.IndexOf(",") == 2)
+                {
+                    liczba += "000";
+                }
+                else if (liczba.Length - liczba.IndexOf(",") == 1)
+                {
+                    liczba += "0000";
+                }
+                else
+                {
+                    liczba += ",0000";
+                }
             }
 
 
@@ -539,7 +564,7 @@ namespace WZDE
             for (int i = indexOstatniegoElem; i >= 0; i--) // utworzenie lewej części tabeli 
             {
 
-              //  Console.WriteLine("i gen " + i);
+                //  Console.WriteLine("i gen " + i);
 
 
                 if (indexOstatniegoElem == 0)
@@ -691,7 +716,7 @@ namespace WZDE
             dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRs, oblPowJednoskiPoUzytku(baza, indexOstatniegoElem));
             dokHTML = dokHTML.Replace(ZnakiZastepcze.JednRejS, baza[0].NrJedn);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotS, baza[0].Podmiot);
-            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitToSpokenHaAndM2(oblPowDoSlownejLiczby(baza, indexOstatniegoElem)));
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitToSpokenHaAndM2OrAry(oblPowDoSlownejLiczby(baza, indexOstatniegoElem)));
             dokHTML = dokHTML.Replace(ZnakiZastepcze.obrebEwidencyjny, Properties.Settings.Default.Obreb);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.gmina, Properties.Settings.Default.Gmina);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.IdZglPracGeodez, Properties.Settings.Default.IdZglPrac);
@@ -706,7 +731,7 @@ namespace WZDE
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, oblPowJednoskiPoUzytku(bazaPoscalWyszukana));
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.jednRejesrtNowa, bazaPoscalWyszukana[0].NrJedn);
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, bazaPoscalWyszukana[0].Podmiot);
-                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitToSpokenHaAndM2(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitToSpokenHaAndM2OrAry(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
 
             }
             else
@@ -1028,7 +1053,7 @@ namespace WZDE
             dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRs, (oblPowJednoskiPoUzytku(baza, indexOstatniegoElem)));
             // dokHTML = dokHTML.Replace(ZnakiZastepcze.JednRejS, baza[0].NrJedn);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotS, baza[0].Podmiot);
-            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitToSpokenHaAndM2(oblPowDoSlownejLiczby(baza, indexOstatniegoElem)));
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitToSpokenHaAndM2OrAry(oblPowDoSlownejLiczby(baza, indexOstatniegoElem)));
             dokHTML = dokHTML.Replace(ZnakiZastepcze.obrebEwidencyjny, Properties.Settings.Default.Obreb);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.gmina, Properties.Settings.Default.Gmina);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.IdZglPracGeodez, Properties.Settings.Default.IdZglPrac);
@@ -1043,7 +1068,7 @@ namespace WZDE
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, (oblPowJednoskiPoUzytku(bazaPoscalWyszukana)));
                 //  dokHTML = dokHTML.Replace(ZnakiZastepcze.jednRejesrtNowa, bazaPoscalWyszukana[0].NrJedn);
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, bazaPoscalWyszukana[0].Podmiot);
-                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitToSpokenHaAndM2(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitToSpokenHaAndM2OrAry(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
 
             }
             else
@@ -1181,7 +1206,7 @@ namespace WZDE
                                 for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
                                 {
                                     listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
-                                  //  Console.WriteLine("PRAWA LISTA last index 0 ");
+                                    //  Console.WriteLine("PRAWA LISTA last index 0 ");
                                 }
                                 //listaLewejTaabeli.Reverse();
                             }
@@ -1228,7 +1253,7 @@ namespace WZDE
                                             for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
                                             {
                                                 listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
-                                               // Console.WriteLine("PRAWA LISTA last index 0 i == index ");
+                                                // Console.WriteLine("PRAWA LISTA last index 0 i == index ");
                                             }
                                         }
                                     }
@@ -1276,7 +1301,7 @@ namespace WZDE
                                             for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
                                             {
 
-                                            //    Console.WriteLine("PRAWA LISTA > 0 esle");
+                                                //    Console.WriteLine("PRAWA LISTA > 0 esle");
                                                 listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
                                             }
                                             //listaLewejTaabeli.Reverse();
@@ -1318,7 +1343,7 @@ namespace WZDE
                                             for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
                                             {
 
-                                              //  Console.WriteLine("PRAWA LISTA > 0 esle");
+                                                //  Console.WriteLine("PRAWA LISTA > 0 esle");
                                                 listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
                                             }
                                             //listaLewejTaabeli.Reverse();
@@ -1336,11 +1361,6 @@ namespace WZDE
                         }
                         else if (i == 0)
                         {
-
-
-
-
-
 
                             if (!bazaPoscalWyszukana[0].Dzialka.Equals(bazaPoscalWyszukana[1].Dzialka))
                             {
@@ -1362,12 +1382,8 @@ namespace WZDE
                                 txtTMP = txtTMP.Replace(ZnakiZastepcze.PowUzytkNowy, bazaPoscalWyszukana[i].PowierzchniaUzytku);
                                 txtTMP = txtTMP.Replace(ZnakiZastepcze.klasaN, bazaPoscalWyszukana[i].Klasa);
                                 listaPrawejTaabeli.Add(txtTMP);
-
-
-
                             }
 
-                            //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \/ 
                             try
                             {
                                 int ileUzytkowPrzed = iloscWyszukanychDzialekWTablicy(bazaPRZEDWyszukana, bazaPoscalWyszukana[i].Dzialka);
@@ -1375,22 +1391,17 @@ namespace WZDE
 
                                 if (ileUzytkowPO < ileUzytkowPrzed)
                                 {
-                                    // listaLewejTaabeli.Reverse();
                                     for (int n = 0; n < (ileUzytkowPrzed - ileUzytkowPO); n++)
                                     {
-                                       // Console.WriteLine("PRAWA LISTA last index = 0  else");
                                         listaPrawejTaabeli.Add(WczytaneTekstowki.PpustyJednRejBezKW);
                                     }
-                                    //listaLewejTaabeli.Reverse();
                                 }
                             }
                             catch (Exception a)
                             {
                                 Console.WriteLine(a);
                             }
-                            //*************************************@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ /\ 
                         }
-
                     }
                 }
 
@@ -1433,7 +1444,7 @@ namespace WZDE
                             for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
                             {
                                 listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
-                           //     Console.WriteLine("PRAWA LISTA last index 0 ");
+                                //     Console.WriteLine("PRAWA LISTA last index 0 ");
                             }
                             //listaLewejTaabeli.Reverse();
                         }
@@ -1478,7 +1489,7 @@ namespace WZDE
                                     for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
                                     {
 
-                                     //   Console.WriteLine("LEWA LISTA > 0 esle");
+                                        //   Console.WriteLine("LEWA LISTA > 0 esle");
                                         listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
                                     }
                                 }
@@ -1529,7 +1540,7 @@ namespace WZDE
                                         for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
                                         {
 
-                                     //       Console.WriteLine("LEWA LISTA > 0 esle");
+                                            //       Console.WriteLine("LEWA LISTA > 0 esle");
                                             listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
                                         }
                                         //listaLewejTaabeli.Reverse();
@@ -1576,7 +1587,7 @@ namespace WZDE
                                         for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
                                         {
 
-                                       //     Console.WriteLine("LEWA LISTA > 0 esle");
+                                            //     Console.WriteLine("LEWA LISTA > 0 esle");
                                             listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
                                         }
                                         //listaLewejTaabeli.Reverse();
@@ -1633,7 +1644,7 @@ namespace WZDE
                             {
                                 for (int n = 0; n < (ileUzytkowPO - ileUzytkowPrzed); n++)
                                 {
-                                //    Console.WriteLine("PRAWA LISTA last index = 0  else");
+                                    //    Console.WriteLine("PRAWA LISTA last index = 0  else");
                                     listaLewejTaabeli.Add(WczytaneTekstowki.LpustyJednRejBezKW);
                                 }
                             }
@@ -1709,7 +1720,7 @@ namespace WZDE
             dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotS, podmiot);
 
             Console.WriteLine("test4");
-            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitToSpokenHaAndM2(oblPowDoSlownejLiczby(baza, indexOstatniegoElem)));
+            dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieS, LiczbaNaTekst.DigitToSpokenHaAndM2OrAry(oblPowDoSlownejLiczby(baza, indexOstatniegoElem)));
             dokHTML = dokHTML.Replace(ZnakiZastepcze.obrebEwidencyjny, Properties.Settings.Default.Obreb);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.gmina, Properties.Settings.Default.Gmina);
             dokHTML = dokHTML.Replace(ZnakiZastepcze.IdZglPracGeodez, Properties.Settings.Default.IdZglPrac);
@@ -1725,7 +1736,7 @@ namespace WZDE
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.pJRn, oblPowJednoskiPoUzytku(bazaPoscalWyszukana));
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.jednRejesrtNowa, bazaPoscalWyszukana[0].NrJedn);
                 dokHTML = dokHTML.Replace(ZnakiZastepcze.podmiotN, bazaPoscalWyszukana[0].Podmiot);
-                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitToSpokenHaAndM2(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
+                dokHTML = dokHTML.Replace(ZnakiZastepcze.slownieN, LiczbaNaTekst.DigitToSpokenHaAndM2OrAry(oblPowDoSlownejLiczby(bazaPoscalWyszukana)));
             }
             else
             {

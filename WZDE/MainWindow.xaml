@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="WZDE-> inż. Marek Wojciechowicz" Height="470" Width="600">
     <StackPanel>
-        <Menu>
+        <Menu Visibility="Collapsed">
             <MenuItem Header="Plik">
                 <MenuItem Header="_Otwórz">     </MenuItem>
                 <MenuItem Header="zamknij"></MenuItem>
@@ -15,13 +15,18 @@
         </Menu>
         <Grid HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Padding="10" Click="OtworzZPliku" ToolTip="'OBREB''NR_JEDN''DZIALKA''POWIERZCHNIA''OFU''OZU''KLASA''POW_UZYTKU''Podmiot''Kw'">Otwórz stan przed scaleniem</Button>
-            <Button Grid.Column="1" Padding="10" Click="OtworzStanPo" ToolTip="'OBREB''NR_JEDN''DZIALKA''POWIERZCHNIA''OFU''OZU''KLASA''POW_UZYTKU''Podmiot''Kw'">Otwórz stan po scaleniu</Button>
-            <Button Grid.Column="2" Padding="10" Click="ZapiszDoPliku">Zapisz do pliku</Button>
+            <ComboBox SelectionChanged="comboBox0Metry1Ary_SelectionChanged"  Grid.Column="0" x:Name="comboBox0Metry1Ary" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <ComboBoxItem>m2</ComboBoxItem>
+                <ComboBoxItem>ary</ComboBoxItem>
+            </ComboBox>
+            <Button Grid.Column="1" Padding="10" Click="OtworzZPliku" ToolTip="'OBREB''NR_JEDN''DZIALKA''POWIERZCHNIA''OFU''OZU''KLASA''POW_UZYTKU''Podmiot''Kw'">Otwórz stan przed scaleniem</Button>
+            <Button Grid.Column="2" Padding="10" Click="OtworzStanPo" ToolTip="'OBREB''NR_JEDN''DZIALKA''POWIERZCHNIA''OFU''OZU''KLASA''POW_UZYTKU''Podmiot''Kw'">Otwórz stan po scaleniu</Button>
+            <Button Grid.Column="3" Padding="10" Click="ZapiszDoPliku">Zapisz do pliku</Button>
         </Grid>
         <Border BorderThickness="1" CornerRadius="2" BorderBrush="Black" >
             <Grid HorizontalAlignment="Stretch">

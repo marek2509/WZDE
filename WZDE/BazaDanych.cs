@@ -19,7 +19,7 @@ namespace WZDE
         public string Podmiot { get; set; }
         public string KW { get; set; }
 
-        public void wypiszWszystko()
+        public void WypiszWszystko()
         {
            //Console.WriteLine("O " + Obreb + "N " + NrJedn + "D " + Dzialka + "PD " + PowierzchniaDzialki + "OFU " + OFU + "OZU " + OZU + "K " + Klasa + "PU " + PowierzchniaUzytku);
             Console.WriteLine(" " + Obreb + " " + NrJedn + " " + Dzialka + " " + PowierzchniaDzialki + " " + OFU + " " + OZU + " " + Klasa + " " + PowierzchniaUzytku);

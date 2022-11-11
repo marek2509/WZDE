@@ -111,8 +111,9 @@ namespace WZDE
             return result;
         }
 
-        public static String DigitToSpokenHaAndM2(string input)
+        public static String DigitToSpokenHaAndM2OrAry(string input)
         {
+            var czyAry = Properties.Settings.Default.czyAry;
             Console.WriteLine("inpt" + input);
             StringBuilder sb = new StringBuilder();
             string ha = "0";
@@ -124,14 +125,16 @@ namespace WZDE
             {
                 ha = splitedText[0];
                 m2 = splitedText[1];
-         
-            
 
-            } else if (splitedText.Length >= 1)
+
+
+            }
+            else if (splitedText.Length >= 1)
             {
                 m2 = splitedText[0];
-           
+
             }
+
 
 
 
@@ -140,11 +143,49 @@ namespace WZDE
                 sb.Append(DigitsStringToSpokenString(ha));
                 sb.Append(" ha ");
             }
-          
-            if (Convert.ToInt32(m2) != 0)
+
+
+            if (czyAry)
             {
-                sb.Append(DigitsStringToSpokenString(m2));
-                sb.Append(" m2");
+                var ary = m2.Length > 2 ? m2.Substring(0, 2) : m2;
+                var aryInt = Convert.ToInt32(ary);
+                if (aryInt != 0)
+                {
+                    sb.Append(DigitsStringToSpokenString(ary));
+
+                    if (aryInt == 1)
+                    {
+                        sb.Append(" ar");
+                    }
+                    else if (aryInt <= 4)
+                    {
+                        sb.Append(" ary");
+                    }
+                    else if (aryInt <= 21)
+                    {
+                        sb.Append(" arów");
+                    }
+                    else
+                    {
+                        var drugaCyfra = aryInt % 10;
+                        if (drugaCyfra >= 2 && drugaCyfra <= 4)
+                        {
+                            sb.Append(" ary");
+                        }
+                        else
+                        {
+                            sb.Append(" arów");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (Convert.ToInt32(m2) != 0)
+                {
+                    sb.Append(DigitsStringToSpokenString(m2));
+                    sb.Append(" m2");
+                }
             }
 
             return sb.ToString();
